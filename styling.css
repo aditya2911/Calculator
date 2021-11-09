@@ -1,0 +1,55 @@
+:root{
+    --Primary-number-color : #FFFFFB;
+    --Background-container-color : #F1F3EE;
+    --Reset-button-color : #C7F1E5;
+    --Primary-arithimatic-button-color : #DBE8CE;
+    --Secondary-arthimatic-button-color : #304F17;
+    box-sizing: border-box;
+}
+
+body div{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    width:100vw;
+    height: 100vh;
+}
+
+.android-frame{
+    display :flex;
+    flex-direction: column;
+    width: 19.5rem;
+    height:35rem;
+    border: 0.425rem solid black;
+    border-radius: 1.875rem;
+}
+
+.output-operation-class{
+    width: 19.5rem;
+    border-radius: 1.4rem 1.4rem 1.2rem 1.2rem;
+    background-color: #DFE5DB;
+    height: 18.4rem
+}
+
+.input-class{
+    display: grid;
+    width: 19.5rem;
+    height: 42rem;
+    background-color: #F1F3EE;
+    border-radius: 0 0 1.49rem 1.49rem;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows:  repeat(5,1fr);
+    align-items: center;
+    justify-items: center;
+}
+
+.input-button{
+    width: 3.75rem;
+    height:3.75rem;
+    border-radius: 60%;
+    background-color: #FFFFFB;
+    border: #000;
+    text-align: center;
+}
+
+
