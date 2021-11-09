@@ -3,11 +3,24 @@
     --Background-container-color : #F1F3EE;
     --Reset-button-color : #C7F1E5;
     --Primary-arithimatic-button-color : #DBE8CE;
-    --Secondary-arthimatic-button-color : #304F17;
+    --Secondary-arthimatic-button-color : #b1bda7;
+    --Primary-equal-button-color:#CEF3AE;
+    --Secondary-equal-button-color:#ADCC92;
+    --Output-operation-color :#DFE5DB;
+    --Background-html-color:#ecefd4;
+    background-color: var(--Background-html-color);
     box-sizing: border-box;
+    
 }
 
-body div{
+@font-face {
+    font-family: googlefont;
+    src: url(font-resources/ProductSans-Regular.ttf);
+}
+
+
+
+.main-class{
     display: grid;
     align-content: center;
     justify-content: center;
@@ -22,20 +35,36 @@ body div{
     height:35rem;
     border: 0.425rem solid black;
     border-radius: 1.875rem;
+    background-color: var(--Background-container-color);
 }
 
 .output-operation-class{
     width: 19.5rem;
     border-radius: 1.4rem 1.4rem 1.2rem 1.2rem;
-    background-color: #DFE5DB;
-    height: 18.4rem
+    background-color: var(--Output-operation-color);
+    height: 18.4rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input-button img{
+    width: 1.375rem;
+}
+
+.output-screen{
+    height: fit-content;
+width: fit-content;
+font-size: 3.5rem;
+font-family: googlefont;
+justify-self: flex-end;
+align-self: center;
 }
 
 .input-class{
     display: grid;
     width: 19.5rem;
     height: 42rem;
-    background-color: #F1F3EE;
+    background-color: var(--Background-container-color);
     border-radius: 0 0 1.49rem 1.49rem;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows:  repeat(5,1fr);
@@ -44,12 +73,73 @@ body div{
 }
 
 .input-button{
-    width: 3.75rem;
-    height:3.75rem;
+    width: 4.3rem;
+height: 3.75rem;
+border-radius: 60%;
+background-color:var(--Primary-number-color);
+border: #000;
+text-align: center;
+font-family: googlefont;
+font-size: 1.5rem;
+transition: 0.2s ease-in;
+}
+
+.input-button:active{
+    border-radius: 20%;
+    background-color: lightgrey;
+}
+
+.AC-class{
+    width: 4.3rem;
+    height: 3.75rem;
     border-radius: 60%;
-    background-color: #FFFFFB;
-    border: #000;
+    background-color: var(--Reset-button-color);
+    font-size: 1.4rem;   
+     border: #000;
     text-align: center;
+    font-family: googlefont;
+    transition: 0.2s ease-in;
+}
+.AC-class:active{
+    border-radius: 20%;
+    background-color: #B0D5CA;
+}
+
+.algo-function-class{
+    width:4.3rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background-color: var(--Primary-arithimatic-button-color);
+     border: #000;
+    text-align: center;
+    font-family: googlefont;
+    transition: 0.2s ease-in;
+
+}
+
+.algo-function-class:active{
+    border-radius: 20%;
+    background-color: var(--Secondary-arthimatic-button-color);
+}
+
+.equall-class{
+    width: 4.3rem;
+    height: 3.75rem;
+    border-radius: 60%;
+    font-size: 1.5rem;
+    background-color: var(--Primary-equal-button-color);
+     border: #000;
+    text-align: center;
+    font-family: googlefont;
+    transition: 0.2s ease-in;
+
+
+}
+
+.equall-class:active{
+    border-radius: 20%;
+    background-color: var(--Secondary-equal-button-color);
 }
 
 
