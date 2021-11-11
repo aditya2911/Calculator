@@ -47,18 +47,31 @@
     justify-content: flex-end;
 }
 
-.input-button img{
-    width: 1.375rem;
+.output-screen{
+    transition: 0.10s ease-in;
+    width: 19.0rem;
+    height: auto;
+    background-color: #dfe5db;
+    border:#000;
+    font-size: 3.5rem;
+    font-family: googlefont;
+    justify-self: flex-end;
+    align-self: center;
+    direction: rtl;
+    unicode-bidi: embed;
+
+}
+.output-screen:focus{
+    outline: none ;
+        
 }
 
-.output-screen{
-    height: fit-content;
-width: fit-content;
-font-size: 3.5rem;
-font-family: googlefont;
-justify-self: flex-end;
-align-self: center;
+.input-button img{
+    width: 1.375rem;
+    margin-right: 0.38rem;
+    margin-top: 0.4rem;
 }
+
 
 .input-class{
     display: grid;
@@ -82,6 +95,7 @@ text-align: center;
 font-family: googlefont;
 font-size: 1.5rem;
 transition: 0.2s ease-in;
+unicode-bidi: embed;
 }
 
 .input-button:active{

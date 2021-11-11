@@ -7,37 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media = "screen" href = "normalize.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styling.css">
-    <script src="script.js" defer></script>
+    <!-- <script src="script.js" defer></script> -->
+    <script src = "script1.js " defer></script>
 </head>
 <body>
     <div class = "main-class" id="main-container">
         <div class = "android-frame">
             <div class = "output-operation-class" id="output-operation">
-                <div class="output-screen" id="output-id">
-                    9 × 2 
-                </div>
+                <input type="tel" value="9 x 2" inputmode="numeric" class="output-screen" id="output-id">
             </div>
             <div id="input" class="input-class">
-                <button class="AC-class"> AC </button> 
-                <button class="algo-function-class"> ( ) </button> 
-                <button class="algo-function-class"> % </button> 
-                <button class="algo-function-class"> ÷ </button> 
-                <button class="input-button"> 7 </button> 
-                <button class="input-button"> 8 </button> 
-                <button class="input-button"> 9 </button> 
-                <button class="algo-function-class"> × </button> 
-                <button class="input-button"> 4 </button> 
-                <button class="input-button"> 5 </button> 
-                <button class="input-button"> 6 </button> 
-                <button class="algo-function-class"> - </button> 
-                <button class="input-button"> 1 </button> 
-                <button class="input-button"> 2 </button> 
-                <button class="input-button"> 3 </button> 
-                <button class="algo-function-class"> + </button> 
-                <button class="input-button"> 0 </button> 
-                <button class="input-button"> . </button> 
-                <button class="input-button "> <img src="image-resources/backspace-1.png"></button> 
-                <button class="equall-class"> = </button> 
+                <button id="AC_id" class="AC-class" data-input="AC"> AC </button> 
+                <button id="bracket_id" class="algo-function-class" data-input="bracket"> ( ) </button> 
+                <button id="remainder_id" class="algo-function-class" data-input="remainder"> % </button> 
+                <button id="divide_id" class="algo-function-class" data-input="division"> ÷ </button> 
+                <button id="seven" class="input-button" data-input="seven_input"> 7 </button> 
+                <button id="eight" class="input-button" data-input="eight_input"> 8 </button> 
+                <button id="nine" class="input-button" data-input="nine_input"> 9 </button> 
+                <button id="multiply_id" class="algo-function-class" data-input="multiply"> × </button> 
+                <button id="four" class="input-button" data-input="four_input"> 4 </button> 
+                <button id="five" class="input-button" data-input="five_input"> 5 </button> 
+                <button id="six" class="input-button" data-input="six_input"> 6 </button> 
+                <button id="minus_id" class="algo-function-class" data-input="subtract"> - </button> 
+                <button id="one" class="input-button" data-input="one_input"> 1 </button> 
+                <button id="two" class="input-button" data-input="two_input"> 2 </button> 
+                <button id="three" class="input-button" data-input="three_input"> 3 </button> 
+                <button id="" class="algo-function-class" data-input="add"> + </button> 
+                <button id="zero" class="input-button" data-input="zero_input"> 0 </button> 
+                <button id="dot_id" class="input-button" data-input="dot" dir="rtl"> .  </button> 
+                <button id="backspace_id" class="input-button" data-input="backspace"> <img src="image-resources/backspace-1.png"></button> 
+                <button id="equal_id" class="equall-class" data-input="equal"> = </button> 
 
 
             </div>
