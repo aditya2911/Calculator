@@ -1,122 +1,92 @@
-const DATA_ONE = "one_input";
-const DATA_TWO = "two_input";
-const DATA_THREE = "three_input";
-const DATA_FOUR = "four_input";
-const DATA_FIVE = "five_input";
-const DATA_SIX = "six_input";
-const DATA_SEVEN = "seven_input";
-const DATA_EIGHT = "eight_input";
-const DATA_NINE = "nine_input";
-const DATA_ZERO = "zero_input";
-const DATA_AC = "AC";
-const DATA_BRACKET = "bracket";
-const DATA_REMAINDER = "remainder";
-const DATA_DIVISION = "division";
-const DATA_MUlTIPLY = "multiply";
-const DATA_SUBTRACT = "subtract";
-const DATA_ADD = "add";
-const DATA_DOT = "dot";
-const DATA_BACKSPACE = "backspace";
-const DATA_EQUAL = "equal";
-
-
-
-
-let FullOutputValue = "";
-
-
-
-
-let input = document.querySelectorAll('.input-button');
-const outputScreen = document.getElementById('output-id');
-
-console.table(input);
-input.forEach((inp) => inp.addEventListener('click', function () {
-    console.log("sup");
-    let inpDataset = inp.dataset.input;
-    // temp.toString();
-    findsUserInputAndDisplaysIt(inpDataset);
-})
-)
-
-
-
-function findsUserInputAndDisplaysIt(textContent) {
-    // console.log(textContent.typeOf);
-    // let temp2 = `"${textContent}"`;
-
-    console.log(textContent.typeOf);
-    // if(textContent == 1){
-    //     outputScreen.textContent = 11;
-    // }
-
-
-    function AppendsInputFromUser(input) {
-        if(input == ".")
-        {
-            
-            outputScreen.style.width = outputScreen.value.length + "ch";
-            outputScreen.style.direction = "ltr";
-            FullOutputValue = FullOutputValue + ".";
-            outputScreen.value = FullOutputValue;
-        }
-        else{
-        outputScreen.style.direction = "rtl";
-        outputScreen.style.width ="19rem"
-        FullOutputValue = FullOutputValue + input;
-        outputScreen.value = FullOutputValue;
-        }
+class Calculator{
+    constructor(previousOperandTextElement,currentOperandTextElement){
+        this.previousOperandTextElement = previousOperandTextElement
+        this.currentOperandTextElement = currentOperandTextElement
+        this.clear()
     }
-    switch (textContent) {
-        case DATA_ZERO:
-            AppendsInputFromUser(0);
-            break;
-        case DATA_ONE:
-            console.log("you ar e in");
-            AppendsInputFromUser(1);
-            break;
 
-        case DATA_TWO:
-            AppendsInputFromUser(2);
-            break;
-        case DATA_THREE:
-            AppendsInputFromUser(3);
-            break;
+    clear(){
+        this.currentOperand = '';
+        this.previousOperandText= ''
+        this.operation = undefined;
+    }
 
+    delete(){
+        this.currentOperand = this.currentOperand.toString().slice(0,-1);
+    }
 
-        case DATA_FOUR:
-            AppendsInputFromUser(4);
-            break;
+    appendNumber(number){
+        console.log(number);
+        if(number == '÷' &&  this.currentOperand == '') {console.log("he;l");return;}
+        if(number == '×' &&  this.currentOperand == '') {console.log("he;l");return;}
+        if(number == '%' &&  this.currentOperand == '') {console.log("he;l");return;}
+        else{
+        if(number == "." && this.currentOperand.includes("."))return;
+        this.currentOperand = this.currentOperand.toString() +number.toString();
+    }}
+    chooseOperation(operation){
+        this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = "";
+    }
+    compute(){
+        console.log(this.currentOperand);
+        let output =  Function(this.currentOperand);
+        console.log(output);
+        outputScreen.value = output.toString();
+    }
+    updateDisplay(){
+        // outputScreen.style.width = "3.5rem"/this.currentOperand.length ;
+        // outputScreen.style.maxWidth = "10ch";
 
-        case DATA_FIVE:
-            AppendsInputFromUser(5);
-            break;
-
-        case DATA_SIX:
-            AppendsInputFromUser(6);
-            break;
-
-        case DATA_SEVEN:
-            AppendsInputFromUser(7);
-            break;
-
-        case DATA_EIGHT:
-            AppendsInputFromUser(8);
-            break;
-
-        case DATA_NINE:
-            AppendsInputFromUser(9);
-            break;
-
-        case DATA_DOT:
-            let dot = '.';
-            // dot.style.direction = 'rtl';
-            if(FullOutputValue.includes(".")) return;
-            AppendsInputFromUser(".");
-        default:
-            return;
-
+        this.currentOperandTextElement.value = this.currentOperand;
+        //  a = outputScreen.getSelection();
+        let length = outputScreen.value.length;
+        outputScreen.focus();
+        // this.previousOperandTextElement.textContent = this.previousOperand;
     }
 }
 
 
+
+const outputScreen = document.getElementById("output-id");
+const numberButtons = document.querySelectorAll("[data-number]");
+const operationButton = document.querySelectorAll('[data-operation]');
+const equalButton = document.querySelector('[data-equals]');
+const deleteButton = document.querySelector('[data-delete]');
+const allClearButton = document.querySelector('[data-all-clear]');
+const previousOperandTextElement = document.querySelector('[data-previous-operand]');
+const currentOperandTextElement1= document.querySelector('[data-current-operand]');
+
+
+
+const  calculator = new Calculator(previousOperandTextElement,currentOperandTextElement1);
+
+numberButtons.forEach(button =>{
+ button.addEventListener("click",()=>{
+     calculator.appendNumber(button.innerText);
+     calculator.updateDisplay();
+ })})
+
+ operationButton.forEach(button =>{
+    button.addEventListener("click",()=>{
+        console.log(button.innerText)
+        calculator.appendNumber(button.innerText);
+        calculator.updateDisplay();
+    })})
+
+    equalButton.addEventListener('click',()=>{
+        calculator.compute();
+        calculator.clear();
+    });
+    
+    deleteButton.addEventListener('click',()=>{
+        calculator.delete();
+        calculator.updateDisplay();
+       })
+
+       allClearButton.addEventListener('click',()=>{
+
+        calculator.clear();
+        calculator.updateDisplay();
+       })

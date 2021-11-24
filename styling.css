@@ -36,8 +36,20 @@
     border: 0.425rem solid black;
     border-radius: 1.875rem;
     background-color: var(--Background-container-color);
+    box-shadow: -29px 25px 10px 0px #cdcfba;
 }
 
+.previous-input{
+    max-width: 19rem;
+width: 2ch;
+height: auto;
+background-color: #dfe5db;
+border: #000;
+font-size: 3.5rem;
+font-family: googlefont;
+justify-self: flex-end;
+align-self: center;
+}
 .output-operation-class{
     width: 19.5rem;
     border-radius: 1.4rem 1.4rem 1.2rem 1.2rem;
@@ -48,17 +60,18 @@
 }
 
 .output-screen{
-    transition: 0.10s ease-in;
-    width: 19.0rem;
+    max-width: 19rem;
+    width: 19rem;
     height: auto;
+    text-align: right;
+
     background-color: #dfe5db;
     border:#000;
     font-size: 3.5rem;
     font-family: googlefont;
     justify-self: flex-end;
     align-self: center;
-    direction: rtl;
-    unicode-bidi: embed;
+    /* direction: rtl; */
 
 }
 .output-screen:focus{
@@ -75,13 +88,14 @@
 
 .input-class{
     display: grid;
-    width: 19.5rem;
+    width: 19rem;
     height: 42rem;
     background-color: var(--Background-container-color);
     border-radius: 0 0 1.49rem 1.49rem;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows:  repeat(5,1fr);
     align-items: center;
+    align-self: center;
     justify-items: center;
 }
 
