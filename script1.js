@@ -12,6 +12,9 @@ let currenNum = "";
 let flag = 0;
 let indicator = 0;
 let decimalFlag = 0;
+let convertToNum;
+let operationFlag = 0;
+
 
 function replaceAt(groupofchar, index, replacement) {
     console.log("apna index " + index);
@@ -132,13 +135,41 @@ class Calculator {
             this.currentOperand = this.currentOperand.toString() + "."
             decimalFlag = 1;
             }
-            if(number!=".")this.currentOperand = this.currentOperand.toString() + number.toString();
+            if(number == '+' || number == '%' || number == '×' || number == '÷' || number == '-'){operationChecker();}
+             if(number!=".")this.currentOperand = this.currentOperand.toString() + number.toString();
+
 
         }
+        
 
         console.log((number));
-        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-')
-        { decimalFlag =0; return;}
+       
+        function operationChecker(){
+            let currentOperandHolder = calculator.currentOperand;
+            let a1 = currentOperandHolder.charAt(currentOperandHolder.length-1);
+            let b1 = parseFloat(a1);
+            console.log({b1});
+            console.log({a1});
+        if(a1 == '+' || a1 == '%' || a1 == '×' || a1 == '÷' || a1 == '-'){
+            if(operationFlag ==0){
+            console.log("you are here");                
+                this.currentOperand = calculator.currentOperand.toString() + a1
+                operationFlag =1
+            }
+            
+        }
+        else{
+            console.log("must have pressed a number");
+            operationFlag =0;
+        }
+    }
+
+        // console.log({convertToNum});
+      
+        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-') { 
+            decimalFlag =0; return;
+        }
+        
        
         if (number == '( )') {
             console.log("inside flag")
