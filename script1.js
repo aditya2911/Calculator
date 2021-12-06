@@ -11,6 +11,7 @@ let workingarr = [];
 let currenNum = "";
 let flag = 0;
 let indicator = 0;
+let decimalFlag = 0;
 
 function replaceAt(groupofchar, index, replacement) {
     console.log("apna index " + index);
@@ -125,13 +126,19 @@ class Calculator {
             }
         }
 
-        else {
-            if (number == "." && this.currentOperand.includes(".")) return;
-            this.currentOperand = this.currentOperand.toString() + number.toString();
+        else {  
+            // if (number == "." && this.currentOperand.includes(".")) return;
+            if(number == "." && decimalFlag == 0){
+            this.currentOperand = this.currentOperand.toString() + "."
+            decimalFlag = 1;
+            }
+            if(number!=".")this.currentOperand = this.currentOperand.toString() + number.toString();
+
         }
 
         console.log((number));
-        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-') return;
+        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-')
+        { decimalFlag =0; return;}
        
         if (number == '( )') {
             console.log("inside flag")
@@ -146,7 +153,10 @@ class Calculator {
             }
         }
         if(number!="( )"){
-        if (number == '.' && currenNum.includes('.')) return;
+        if (number == '.' && currenNum.includes('.')) 
+        {console.log("why decimal")
+        return;
+    }
         currenNum += number;
         }
 
