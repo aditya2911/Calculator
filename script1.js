@@ -75,6 +75,10 @@ class Calculator {
         this.currentOperand = '';
         this.previousOperandText = ''
         this.operation = undefined;
+        flag = 0;
+        decimalFlag = 0;
+        indicator = 0;
+        operationFlag =0;
         workingarr = new Array;
         console.log("THanos "+workingarr);
 
