@@ -319,6 +319,8 @@ class Calculator {
         console.log({tempMUl});
         let output = math.evaluate(tempMUl);
         currentOperandTextElement1.value = output.toString();
+        this.currentOperand = output.toString();
+        calculator.updateDisplay();
 
 
         // let tempArr = this.currentOperand.toString();
@@ -409,7 +411,7 @@ equalButton.addEventListener('click', () => {
     calculator.compute();
     workingarr.push(currenNum);
     console.log("you pressed equal "+workingarr);
-    calculator.clear();
+    // calculator.clear();
 });
 
 deleteButton.addEventListener('click', () => {
