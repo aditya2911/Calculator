@@ -14,6 +14,9 @@ let indicator = 0;
 let decimalFlag = 0;
 let convertToNum;
 let operationFlag = 0;
+let subtractFlag = 0;
+let subtractFlag1 =0;
+let subtractFlag2 =0;
 
 
 function replaceAt(groupofchar, index, replacement) {
@@ -81,6 +84,8 @@ class Calculator {
         operationFlag =0;
         workingarr = new Array;
         console.log("THanos "+workingarr);
+         subtractFlag = 0;
+         subtractFlag1 =0;
 
     }
 
@@ -114,7 +119,7 @@ class Calculator {
         console.log(number);
         if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
         if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
-        if (number == '%' && this.currentOperand == '') { console.log("he;l"); return; }
+        // if (number == '%' && this.currentOperand == '') { console.log("he;l"); return; }
 
 
 
@@ -139,9 +144,58 @@ class Calculator {
             this.currentOperand = this.currentOperand.toString() + "."
             decimalFlag = 1;
             }
-            if(number == '+' || number == '%' || number == '×' || number == '÷' || number == '-'){operationChecker();}
-             if(number!=".")this.currentOperand = this.currentOperand.toString() + number.toString();
+            let currentOperandHolder1 = calculator.currentOperand;
 
+            let a11 = currentOperandHolder1.charAt(currentOperandHolder1.length-1);
+
+               if( a11 == '×'   && number == "-")
+            {   
+                if(subtractFlag == 0){
+                this.currentOperand = calculator.currentOperand.toString() + "-";
+                console.log("ypu in subtract land");
+                subtractFlag = 1
+                calculator.updateDisplay();
+            }
+              
+            }
+            else{
+                subtractFlag = 0;
+                console.log("ypu in HEAVEN land");
+            }
+
+            if(a11 == '÷' && number == "-")
+            {
+                if(subtractFlag1 == 0){
+                    this.currentOperand = calculator.currentOperand.toString() + "-";
+                    console.log("ypu in subtract land 111");
+                    subtractFlag1 = 1
+                    calculator.updateDisplay();
+                }
+                   
+            }
+            else{
+                subtractFlag1 = 0;
+                console.log("ypu in HEAVEN land 222");
+            }
+
+            if(a11 == '%' && number == "-")
+            {
+                if(subtractFlag1 == 0){
+                    this.currentOperand = calculator.currentOperand.toString() + "-";
+                    console.log("ypu in subtract land 111");
+                    subtractFlag2 = 1
+                    calculator.updateDisplay();
+                }
+                   
+            }
+            else{
+                subtractFlag2 = 0;
+                console.log("ypu in HEAVEN land 222");
+            }
+
+            if(number == '+' || number == '×' || number == '÷' || number == '-'){operationChecker();}
+             if(number!=".")this.currentOperand = this.currentOperand.toString() + number.toString();
+            
 
         }
         
@@ -156,7 +210,10 @@ class Calculator {
             console.log({a1});
         if(a1 == '+' || a1 == '%' || a1 == '×' || a1 == '÷' || a1 == '-'){
             if(operationFlag ==0){
-            console.log("you are here");                
+            console.log("you are here");  
+         
+
+                         
                 this.currentOperand = calculator.currentOperand.toString() + a1
                 operationFlag =1
             }
@@ -221,74 +278,89 @@ class Calculator {
         let storeString = this.currentOperand.toString();
         let operatedString = this.currentOperand.toString();
 
-        for (let b = 0; b < storeString.length; b++) {
-            if (operatedString.includes('×'))
-                console.log("hi " + operatedString)
+        // for (let b = 0; b < storeString.length; b++) {
+        //     if (operatedString.includes('×'))
+        //         console.log("hi " + operatedString)
 
-            {
-                let indexOfMutiSign = operatedString.indexOf('×');
-                console.log("index:" + indexOfMutiSign)
-                if (indexOfMutiSign != -1) {
-                    let arrayExample = [];
-                    arrayExample = Array.from(operatedString);
+        //     {
+        //         let indexOfMutiSign = operatedString.indexOf('×');
+        //         console.log("index:" + indexOfMutiSign)
+        //         if (indexOfMutiSign != -1) {
+        //             let arrayExample = [];
+        //             arrayExample = Array.from(operatedString);
 
-                    let operandi1 = arrayExample[indexOfMutiSign - 1];
-                    let operandi2 = arrayExample[indexOfMutiSign + 1];
-                    console.log(operandi1 + "operan1");
-                    console.log(operandi2 + "operan2");
-                    let result1 = operandi1 * operandi2;
-                    let tempIndex = indexOfMutiSign + 1;
-                    operatedString = replaceAt(operatedString, tempIndex, result1);
-                    console.log("tumharta " + operatedString)
-                    console.log("this is result" + result1);
-                    currentOperandTextElement1.value = operatedString.toString();
-                }
-            }
-
-
-        }
+        //             let operandi1 = arrayExample[indexOfMutiSign - 1];
+        //             let operandi2 = arrayExample[indexOfMutiSign + 1];
+        //             console.log(operandi1 + "operan1");
+        //             console.log(operandi2 + "operan2");
+        //             let result1 = operandi1 * operandi2;
+        //             let tempIndex = indexOfMutiSign + 1;
+        //             operatedString = replaceAt(operatedString, tempIndex, result1);
+        //             console.log("tumharta " + operatedString)
+        //             console.log("this is result" + result1);
+        //             currentOperandTextElement1.value = operatedString.toString();
+        //         }
+        //     }
 
 
-        let tempArr = this.currentOperand.toString();
-        for (let i = 0; i < tempArr.length; i++) {
-            if (tempArr[i] == '×') index.push(i + 1); {
-                // console.log('in')
-                for (let a = 0; a < index.length; a++) {
-                    mul = index[a];
+        // }
 
-                    operand1 = (tempArr.charAt(mulIndex - 1));
-                    operand2 = (tempArr.charAt(mulIndex + 1));
-                    result = operand1 * operand2;
-                    this.currentOperand.c
-                    result = temp * result;
-                    // console.log("multiplication" + result);
-                }
-                // index.forEach((xIndex) => {
-                //      mulIndex = xIndex ;
-                //      operand1 = tempArr.charAt(mulIndex - 1);
-                //      operand2 = tempArr.charAt(mulIndex + 1);
-                //     result = operand1 * operand2
-                //     console.log("multiplication" + result);
+        let inputTextElemenet = currentOperandTextElement1.value.toString();
+        let tempMUl = inputTextElemenet.toString();
+       
+       
+        let mul = '×'
+        let div = '÷';
+        let repl = new RegExp(mul,'g');
+        let replDIv = new RegExp(div,'g');
 
-                // })
-
-            }
-
-            if (tempArr.includes("+")) {
-                console.log('inAdd')
-                let mulIndex = tempArr.indexOf('+');
-                let operand1 = tempArr.charAt(mulIndex - 1);
-                let operand2 = tempArr.charAt(mulIndex + 1);
-                result = operand1 + operand2
-                console.log("addition" + result);
-            }
-        }
+        tempMUl = tempMUl.replace(mul,'*');
+        tempMUl = tempMUl.replace(div,'/');
+        console.log({tempMUl});
+        let output = math.evaluate(tempMUl);
+        currentOperandTextElement1.value = output.toString();
 
 
-        // console.log(tempArr + "sup");
-        // let output =
-        //     // console.log(output);
-        //     outputScreen.value = output.toString();
+        // let tempArr = this.currentOperand.toString();
+        // for (let i = 0; i < tempArr.length; i++) {
+        //     if (tempArr[i] == '×') index.push(i + 1); {
+        //         // console.log('in')
+        //         for (let a = 0; a < index.length; a++) {
+        //             mul = index[a];
+
+        //             operand1 = (tempArr.charAt(mulIndex - 1));
+        //             operand2 = (tempArr.charAt(mulIndex + 1));
+        //             result = operand1 * operand2;
+        //             this.currentOperand.c
+        //             result = temp * result;
+        //             // console.log("multiplication" + result);
+        //         }
+        //         // index.forEach((xIndex) => {
+        //         //      mulIndex = xIndex ;
+        //         //      operand1 = tempArr.charAt(mulIndex - 1);
+        //         //      operand2 = tempArr.charAt(mulIndex + 1);
+        //         //     result = operand1 * operand2
+        //         //     console.log("multiplication" + result);
+
+        //         // })
+
+        //     }
+
+        //     if (tempArr.includes("+")) {
+        //         console.log('inAdd')
+        //         let mulIndex = tempArr.indexOf('+');
+        //         let operand1 = tempArr.charAt(mulIndex - 1);
+        //         let operand2 = tempArr.charAt(mulIndex + 1);
+        //         result = operand1 + operand2
+        //         console.log("addition" + result);
+        //     }
+        // }
+
+
+        // // console.log(tempArr + "sup");
+        // // let output =
+        // //     // console.log(output);
+        // //     outputScreen.value = output.toString();
     }
     updateDisplay() {
         // outputScreen.style.width = "3.5rem"/this.currentOperand.length ;
