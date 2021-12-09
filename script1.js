@@ -17,7 +17,20 @@ let operationFlag = 0;
 let subtractFlag = 0;
 let subtractFlag1 =0;
 let subtractFlag2 =0;
+let firstBracketIterator = 0;
 
+let cursorPosition ;
+function cursorPosition1(){
+     cursorPosition  = currentOperandTextElement1.selectionStart;
+     return cursorPosition;
+}
+
+// var cursorPosition2 = currentOperandTextElement1.prop("selectionStart");
+// console.log({cursorPosition2})
+function ifTextElementEmptyAndOperand(){
+    if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
+    if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
+}
 
 function replaceAt(groupofchar, index, replacement) {
     console.log("apna index " + index);
@@ -117,30 +130,60 @@ class Calculator {
 
     appendNumber(number) {
         console.log(number);
+        // let cursor = cursorPosition1();
+        // if(cursor<currentOperandTextElement1.length){
+        //     console.log("you in cursor land")
+        //     if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
+        //     if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
+        // }
+
         if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
         if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
         // if (number == '%' && this.currentOperand == '') { console.log("he;l"); return; }
 
+        let currentOperandHolder11 = calculator.currentOperand;
 
-
+        let lastElement = currentOperandHolder11.charAt(currentOperandHolder11.length-1) 
         if(number == '( )'){
-            if(indicator == 1){
+
+            
+         
+
+
+            // if(firstBracketIterator>0){
+            if(indicator == 1 && (!isNaN(lastElement))||lastElement==")"  ){
             if(currenNum!="")workingarr.push(currenNum);
-            this.currentOperand = this.currentOperand.toString() + ")"
-            indicator =0;
+            
+        
+            if(firstBracketIterator>0){
+                this.currentOperand = this.currentOperand.toString() + ")";
+                firstBracketIterator--;
+
+                
+            }
+            
+console.log("end wale bracket nme ho aap");
+
+            // firstBracketIterator =0;
+            if(firstBracketIterator ==0)  indicator =0;
             currenNum = ""
             }
+        //}
             else{
-                if(currenNum!="")workingarr.push(currenNum);
+                // if(currenNum!="")workingarr.push(currenNum);
                 this.currentOperand = this.currentOperand.toString() + "("
                 indicator =1;
                 currenNum = ""
+                firstBracketIterator = firstBracketIterator +1;
+                console.log({firstBracketIterator});
+                calculator.updateDisplay();
             }
         }
 
         else {  
             // if (number == "." && this.currentOperand.includes(".")) return;
             if(number == "." && decimalFlag == 0){
+                if(cursorPosition)
             this.currentOperand = this.currentOperand.toString() + "."
             decimalFlag = 1;
             }
@@ -314,8 +357,8 @@ class Calculator {
         let repl = new RegExp(mul,'g');
         let replDIv = new RegExp(div,'g');
 
-        tempMUl = tempMUl.replace(mul,'*');
-        tempMUl = tempMUl.replace(div,'/');
+        tempMUl = tempMUl.replaceAll(mul,'*');
+        tempMUl = tempMUl.replaceAll(div,'/');
         console.log({tempMUl});
         let output = math.evaluate(tempMUl);
         currentOperandTextElement1.value = output.toString();
