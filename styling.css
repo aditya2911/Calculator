@@ -128,7 +128,7 @@ align-self: center;
     font-size: 1.7rem;
     transition: 0.2s ease-in;
     unicode-bidi: embed;
-    box-shadow: 0 0 8px #c8c8c89e;
+    box-shadow: 0 0 3px #c8c8c89e;
 }
 
 .input-button:active{
@@ -146,7 +146,7 @@ align-self: center;
     text-align: center;
     font-family: googlefont;
     transition: 0.2s ease-in;
-    box-shadow: 0 0 6px #b4b4b4;
+    box-shadow: 0 0 3px #b4b4b4;
 }
 .AC-class:active{
     border-radius: 20%;
@@ -163,7 +163,7 @@ align-self: center;
     text-align: center;
     font-family: googlefont;
     transition: 0.2s ease-in;
-    box-shadow: 0 0 6px #b4b4b4;
+    box-shadow: 0 0 3px #b4b4b4;
 }
 
 
