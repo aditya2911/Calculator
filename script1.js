@@ -19,6 +19,12 @@ let subtractFlag1 = 0;
 let subtractFlag2 = 0;
 let firstBracketIterator = 0;
 
+
+// function doNothingWhenNumberInputed(){
+//     console.log("here num input")
+//     return;
+// }
+
 let cursorPosition;
 function cursorPosition1() {
     cursorPosition = currentOperandTextElement1.selectionStart;
@@ -55,7 +61,7 @@ function computeAndOutput() {
     console.log({ tempMUl });
     try {
         let output = math.evaluate(tempMUl);
-        return output;
+        return math.round(output,3);
         
       
     }

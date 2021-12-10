@@ -1,12 +1,12 @@
 :root{
-    --Primary-number-color : #FFFFFB;
-    --Background-container-color : #F1F3EE;
-    --Reset-button-color : #C7F1E5;
-    --Primary-arithimatic-button-color : #DBE8CE;
-    --Secondary-arthimatic-button-color : #b1bda7;
-    --Primary-equal-button-color:#CEF3AE;
-    --Secondary-equal-button-color:#ADCC92;
-    --Output-operation-color :#DFE5DB;
+    --Primary-number-color : #FFF;
+    --Background-container-color : #ebebebeb;
+    --Reset-button-color : #dbccde;
+    --Primary-arithimatic-button-color : #c0d6d4eb;
+    --Secondary-arthimatic-button-color : #acbfbdeb;
+    --Primary-equal-button-color:#ADF173;
+    --Secondary-equal-button-color:#93CC62;
+    --Output-operation-color :#ccdedc;
     --Background-html-color:#ecefd4;
     --Foreground-number-color:#1f1f1f;
     background-color: var(--Background-html-color);
@@ -128,7 +128,7 @@ align-self: center;
     font-size: 1.7rem;
     transition: 0.2s ease-in;
     unicode-bidi: embed;
-    box-shadow: 0 0 3px #c8c8c89e;
+    /* box-shadow: 0 0 3px #c8c8c89e; */
 }
 
 .input-button:active{
@@ -146,11 +146,11 @@ align-self: center;
     text-align: center;
     font-family: googlefont;
     transition: 0.2s ease-in;
-    box-shadow: 0 0 3px #b4b4b4;
+    /* box-shadow: 0 0 3px #b4b4b4; */
 }
 .AC-class:active{
     border-radius: 20%;
-    background-color: #B0D5CA;
+    background-color: #bfb1c1;
 }
 
 .algo-function-class {
@@ -163,7 +163,7 @@ align-self: center;
     text-align: center;
     font-family: googlefont;
     transition: 0.2s ease-in;
-    box-shadow: 0 0 3px #b4b4b4;
+    /* box-shadow: 0 0 3px #b4b4b4; */
 }
 
 
@@ -175,7 +175,7 @@ align-self: center;
 
 .equall-class{
     width: 4.3rem;
-    height: 3.75rem;
+    height: 4.1rem;
     border-radius: 60%;
     font-size: 1.5rem;
     background-color: var(--Primary-equal-button-color);
