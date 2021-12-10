@@ -8,6 +8,7 @@
     --Secondary-equal-button-color:#ADCC92;
     --Output-operation-color :#DFE5DB;
     --Background-html-color:#ecefd4;
+    --Foreground-number-color:#1f1f1f;
     background-color: var(--Background-html-color);
     box-sizing: border-box;
     
@@ -55,32 +56,48 @@ align-self: center;
     border-radius: 1.4rem 1.4rem 1.2rem 1.2rem;
     background-color: var(--Output-operation-color);
     height: 18.4rem;
-    display: flex;
-    justify-content: flex-end;
+    display: grid;
+    align-content: flex-end;
 }
 
 .output-screen{
-    max-width: 19rem;
     width: 19rem;
-    height: auto;
+    height: 4rem;
     text-align: right;
-
-    background-color: #dfe5db;
-    border:#000;
+    border: #000;
     font-size: 3.5rem;
     font-family: googlefont;
-    justify-self: flex-end;
-    align-self: center;
-    /* direction: rtl; */
+    align-self: flex-end;
+    padding: 0;
+    justify-self: center;
+    background-color: inherit;
+    margin-right: 0.5rem;
+    margin-bottom: 0.8rem;
+    color: inherit;
+}
 
+.error-window{
+    max-width: 19rem;
+    width: 19rem;
+    height: 3rem;
+    text-align: right;
+    border: #000;
+    font-size: 1.9rem;
+    font-family: googlefont;
+    justify-self: flex-end;
+    align-self: flex-end;
+    background-color: inherit;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    color: inherit;
 }
 .output-screen:focus{
     outline: none ;
         
 }
 
-.input-button img{
-    width: 1.375rem;
+.input-button img {
+    width: 1.45rem;
     margin-right: 0.38rem;
     margin-top: 0.4rem;
 }
@@ -97,19 +114,21 @@ align-self: center;
     align-items: center;
     align-self: center;
     justify-items: center;
+    color: var(--Foreground-number-color);
 }
 
-.input-button{
+.input-button {
     width: 4.3rem;
-height: 3.75rem;
-border-radius: 60%;
-background-color:var(--Primary-number-color);
-border: #000;
-text-align: center;
-font-family: googlefont;
-font-size: 1.5rem;
-transition: 0.2s ease-in;
-unicode-bidi: embed;
+    height: 4.1rem;
+    border-radius: 60%;
+    background-color: var(--Primary-number-color);
+    border: #000;
+    text-align: center;
+    font-family: googlefont;
+    font-size: 1.7rem;
+    transition: 0.2s ease-in;
+    unicode-bidi: embed;
+    box-shadow: 0 0 8px #c8c8c89e;
 }
 
 .input-button:active{
@@ -117,34 +136,37 @@ unicode-bidi: embed;
     background-color: lightgrey;
 }
 
-.AC-class{
+.AC-class {
     width: 4.3rem;
-    height: 3.75rem;
+    height: 4.1rem;
     border-radius: 60%;
     background-color: var(--Reset-button-color);
-    font-size: 1.4rem;   
-     border: #000;
+    font-size: 1.6rem;
+    border: #000;
     text-align: center;
     font-family: googlefont;
     transition: 0.2s ease-in;
+    box-shadow: 0 0 6px #b4b4b4;
 }
 .AC-class:active{
     border-radius: 20%;
     background-color: #B0D5CA;
 }
 
-.algo-function-class{
-    width:4.3rem;
-    height: 3.75rem;
+.algo-function-class {
+    width: 4.2rem;
+    height: 4.1rem;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     background-color: var(--Primary-arithimatic-button-color);
-     border: #000;
+    border: #000;
     text-align: center;
     font-family: googlefont;
     transition: 0.2s ease-in;
-
+    box-shadow: 0 0 6px #b4b4b4;
 }
+
+
 
 .algo-function-class:active{
     border-radius: 20%;

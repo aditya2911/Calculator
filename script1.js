@@ -15,22 +15,58 @@ let decimalFlag = 0;
 let convertToNum;
 let operationFlag = 0;
 let subtractFlag = 0;
-let subtractFlag1 =0;
-let subtractFlag2 =0;
+let subtractFlag1 = 0;
+let subtractFlag2 = 0;
 let firstBracketIterator = 0;
 
-let cursorPosition ;
-function cursorPosition1(){
-     cursorPosition  = currentOperandTextElement1.selectionStart;
-     return cursorPosition;
+let cursorPosition;
+function cursorPosition1() {
+    cursorPosition = currentOperandTextElement1.selectionStart;
+    return cursorPosition;
 }
 
 // var cursorPosition2 = currentOperandTextElement1.prop("selectionStart");
 // console.log({cursorPosition2})
-function ifTextElementEmptyAndOperand(){
+function ifTextElementEmptyAndOperand() {
     if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
     if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
 }
+
+function  outputOperationColorChanger() {
+    errorWIndow.textContent = "Format error";
+    outputOperationContainer.style.color = "#FF5722";
+}
+
+function defaultOutputOperationColor(){
+    errorWIndow.textContent = "";
+    outputOperationContainer.style.color = "#1f1f1f";
+}
+
+function computeAndOutput() {
+    let inputTextElemenet = currentOperandTextElement1.value.toString();
+    let tempMUl = inputTextElemenet.toString();
+
+    let mul = '×';
+    let div = '÷';
+
+    tempMUl = tempMUl.replaceAll(mul, '*');
+    tempMUl = tempMUl.replaceAll(div, '/');
+
+    console.log({ tempMUl });
+    try {
+        let output = math.evaluate(tempMUl);
+        return output;
+        
+      
+    }
+    catch (e) {
+
+        outputOperationColorChanger();
+
+
+    }
+}
+
 
 function replaceAt(groupofchar, index, replacement) {
     console.log("apna index " + index);
@@ -94,41 +130,49 @@ class Calculator {
         flag = 0;
         decimalFlag = 0;
         indicator = 0;
-        operationFlag =0;
+        operationFlag = 0;
         workingarr = new Array;
-        console.log("THanos "+workingarr);
-         subtractFlag = 0;
-         subtractFlag1 =0;
+        console.log("THanos " + workingarr);
+        subtractFlag = 0;
+        subtractFlag1 = 0;
+        defaultOutputOperationColor();
 
     }
 
     delete() {
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
-        
-        
-       (currenNum =="")?"v":workingarr.push(currenNum);
-            if(workingarr.at(-1)!=''){
-                let indexElement = workingarr.at(-1);
-                console.log("indexELement"+indexElement)
-                let changedElement = indexElement.toString().slice(0,-1);
-                workingarr[workingarr.length-1] = changedElement.toString();
 
-                if(changedElement =='')workingarr.pop();
-                console.log("changed man"+changedElement);
-                console.log("length:"+workingarr.length);
-                }
-            else{
-                console.log("why are u here");
-                workingarr.pop();
-            }
-            currenNum = "";
-        
-       
 
-        console.log("pop pop "+workingarr);
+        (currenNum == "") ? "v" : workingarr.push(currenNum);
+        if (workingarr.at(-1) != '') {
+            let indexElement = workingarr.at(-1);
+            console.log("indexELement" + indexElement)
+            let changedElement = indexElement.toString().slice(0, -1);
+            workingarr[workingarr.length - 1] = changedElement.toString();
+
+            if (changedElement == '') workingarr.pop();
+            console.log("changed man" + changedElement);
+            console.log("length:" + workingarr.length);
+        }
+        else {
+            console.log("why are u here");
+            workingarr.pop();
+        }
+        currenNum = "";
+
+       defaultOutputOperationColor();
+
+        console.log("pop pop " + workingarr);
     }
 
     appendNumber(number) {
+
+
+
+
+        defaultOutputOperationColor();
+
+        errorWIndow.textContent ="";
         console.log(number);
         // let cursor = cursorPosition1();
         // if(cursor<currentOperandTextElement1.length){
@@ -143,157 +187,160 @@ class Calculator {
 
         let currentOperandHolder11 = calculator.currentOperand;
 
-        let lastElement = currentOperandHolder11.charAt(currentOperandHolder11.length-1) 
-        if(number == '( )'){
+        let lastElement = currentOperandHolder11.charAt(currentOperandHolder11.length - 1)
 
-            
-         
+        if (lastElement == "(" && (number == '×' || number == '÷')) return;
+        if (number == '( )') {
+
+
 
 
             // if(firstBracketIterator>0){
-            if(indicator == 1 && (!isNaN(lastElement))||lastElement==")"  ){
-            if(currenNum!="")workingarr.push(currenNum);
-            
-        
-            if(firstBracketIterator>0){
-                this.currentOperand = this.currentOperand.toString() + ")";
-                firstBracketIterator--;
+            if (indicator == 1 && (!isNaN(lastElement)) || lastElement == ")" || lastElement == "%") {
+                if (currenNum != "") workingarr.push(currenNum);
 
-                
-            }
-            
-console.log("end wale bracket nme ho aap");
 
-            // firstBracketIterator =0;
-            if(firstBracketIterator ==0)  indicator =0;
-            currenNum = ""
+                if (firstBracketIterator > 0) {
+                    this.currentOperand = this.currentOperand.toString() + ")";
+                    firstBracketIterator--;
+
+
+                }
+
+                console.log("end wale bracket nme ho aap");
+
+                // firstBracketIterator =0;
+                if (firstBracketIterator == 0) indicator = 0;
+                currenNum = ""
             }
-        //}
-            else{
+            //}
+            else {
                 // if(currenNum!="")workingarr.push(currenNum);
                 this.currentOperand = this.currentOperand.toString() + "("
-                indicator =1;
+                indicator = 1;
                 currenNum = ""
-                firstBracketIterator = firstBracketIterator +1;
-                console.log({firstBracketIterator});
+                firstBracketIterator = firstBracketIterator + 1;
+                console.log({ firstBracketIterator });
                 calculator.updateDisplay();
             }
         }
 
-        else {  
+        else {
             // if (number == "." && this.currentOperand.includes(".")) return;
-            if(number == "." && decimalFlag == 0){
-                if(cursorPosition)
-            this.currentOperand = this.currentOperand.toString() + "."
-            decimalFlag = 1;
+            if (number == "." && decimalFlag == 0) {
+                if (cursorPosition)
+                    this.currentOperand = this.currentOperand.toString() + "."
+                decimalFlag = 1;
             }
             let currentOperandHolder1 = calculator.currentOperand;
 
-            let a11 = currentOperandHolder1.charAt(currentOperandHolder1.length-1);
+            let a11 = currentOperandHolder1.charAt(currentOperandHolder1.length - 1);
 
-               if( a11 == '×'   && number == "-")
-            {   
-                if(subtractFlag == 0){
-                this.currentOperand = calculator.currentOperand.toString() + "-";
-                console.log("ypu in subtract land");
-                subtractFlag = 1
-                calculator.updateDisplay();
+            if (a11 == '×' && number == "-") {
+                if (subtractFlag == 0) {
+                    this.currentOperand = calculator.currentOperand.toString() + "-";
+                    console.log("ypu in subtract land");
+                    subtractFlag = 1
+                    calculator.updateDisplay();
+                }
+
             }
-              
-            }
-            else{
+            else {
                 subtractFlag = 0;
                 console.log("ypu in HEAVEN land");
             }
 
-            if(a11 == '÷' && number == "-")
-            {
-                if(subtractFlag1 == 0){
+            if (a11 == '÷' && number == "-") {
+                if (subtractFlag1 == 0) {
                     this.currentOperand = calculator.currentOperand.toString() + "-";
                     console.log("ypu in subtract land 111");
                     subtractFlag1 = 1
                     calculator.updateDisplay();
                 }
-                   
+
             }
-            else{
+            else {
                 subtractFlag1 = 0;
                 console.log("ypu in HEAVEN land 222");
             }
 
-            if(a11 == '%' && number == "-")
-            {
-                if(subtractFlag1 == 0){
+            if (a11 == '%' && number == "-") {
+                if (subtractFlag1 == 0) {
                     this.currentOperand = calculator.currentOperand.toString() + "-";
                     console.log("ypu in subtract land 111");
                     subtractFlag2 = 1
                     calculator.updateDisplay();
                 }
-                   
+
             }
-            else{
+            else {
                 subtractFlag2 = 0;
                 console.log("ypu in HEAVEN land 222");
             }
 
-            if(number == '+' || number == '×' || number == '÷' || number == '-'){operationChecker();}
-             if(number!=".")this.currentOperand = this.currentOperand.toString() + number.toString();
-            
+            if (number == '+' || number == '×' || number == '÷' || number == '-') { operationChecker(); }
+            if (number != ".") this.currentOperand = this.currentOperand.toString() + number.toString();
+
 
         }
-        
+
 
         console.log((number));
-       
-        function operationChecker(){
-            let currentOperandHolder = calculator.currentOperand;
-            let a1 = currentOperandHolder.charAt(currentOperandHolder.length-1);
-            let b1 = parseFloat(a1);
-            console.log({b1});
-            console.log({a1});
-        if(a1 == '+' || a1 == '%' || a1 == '×' || a1 == '÷' || a1 == '-'){
-            if(operationFlag ==0){
-            console.log("you are here");  
-         
 
-                         
-                this.currentOperand = calculator.currentOperand.toString() + a1
-                operationFlag =1
+        function operationChecker() {
+            let currentOperandHolder = calculator.currentOperand;
+            let a1 = currentOperandHolder.charAt(currentOperandHolder.length - 1);
+            let b1 = parseFloat(a1);
+            console.log({ b1 });
+            console.log({ a1 });
+            if (a1 == '+' || a1 == '%' || a1 == '×' || a1 == '÷' || a1 == '-') {
+                if (operationFlag == 0) {
+                    console.log("you are here");
+
+
+
+                    this.currentOperand = calculator.currentOperand.toString() + a1
+                    operationFlag = 1
+                }
+
             }
-            
+            else {
+                console.log("must have pressed a number");
+                operationFlag = 0;
+            }
         }
-        else{
-            console.log("must have pressed a number");
-            operationFlag =0;
-        }
-    }
 
         // console.log({convertToNum});
-      
-        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-') { 
-            decimalFlag =0; return;
+
+        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-') {
+            decimalFlag = 0; return;
         }
-        
-       
+
+
         if (number == '( )') {
             console.log("inside flag")
-          
+
             if (flag == 1) {
                 workingarr.push(")")
                 flag = 0;
             }
-            else{
+            else {
                 workingarr.push("(");
                 flag = 1;
             }
         }
-        if(number!="( )"){
-        if (number == '.' && currenNum.includes('.')) 
-        {console.log("why decimal")
-        return;
-    }
-        currenNum += number;
+        if (number != "( )") {
+            if (number == '.' && currenNum.includes('.')) {
+                console.log("why decimal")
+                return;
+            }
+            currenNum += number;
         }
+
+        // let realtimeOutput = computeAndOutput();
+        // console.log("realtimeOutput"+realtimeOutput);
+        // if(typeof(realtimeOutput)!= "undefined")errorWIndow.textContent = realtimeOutput.toString();
+        
 
     }
     chooseOperation(operation) {
@@ -348,24 +395,16 @@ console.log("end wale bracket nme ho aap");
 
         // }
 
-        let inputTextElemenet = currentOperandTextElement1.value.toString();
-        let tempMUl = inputTextElemenet.toString();
        
-       
-        let mul = '×'
-        let div = '÷';
-        let repl = new RegExp(mul,'g');
-        let replDIv = new RegExp(div,'g');
 
-        tempMUl = tempMUl.replaceAll(mul,'*');
-        tempMUl = tempMUl.replaceAll(div,'/');
-        console.log({tempMUl});
-        let output = math.evaluate(tempMUl);
-        currentOperandTextElement1.value = output.toString();
-        this.currentOperand = output.toString();
+        let output1 = computeAndOutput();
+        
+        currentOperandTextElement1.value = output1.toString();
+        this.currentOperand = output1.toString();
         calculator.updateDisplay();
 
 
+     
         // let tempArr = this.currentOperand.toString();
         // for (let i = 0; i < tempArr.length; i++) {
         //     if (tempArr[i] == '×') index.push(i + 1); {
@@ -429,7 +468,8 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement1 = document.querySelector('[data-current-operand]');
-
+const errorWIndow = document.getElementById('error_window_id');
+const outputOperationContainer = document.getElementById('output-operation');
 
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement1);
@@ -453,7 +493,7 @@ operationButton.forEach(b1 => {
 equalButton.addEventListener('click', () => {
     calculator.compute();
     workingarr.push(currenNum);
-    console.log("you pressed equal "+workingarr);
+    console.log("you pressed equal " + workingarr);
     // calculator.clear();
 });
 
