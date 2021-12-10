@@ -229,6 +229,7 @@ class Calculator {
             // if (number == "." && this.currentOperand.includes(".")) return;
             if (number == "." && decimalFlag == 0) {
                 if (cursorPosition)
+                console.log("indside decimal land")
                     this.currentOperand = this.currentOperand.toString() + "."
                 decimalFlag = 1;
             }
