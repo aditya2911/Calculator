@@ -141,6 +141,8 @@ class Calculator {
         console.log("THanos " + workingarr);
         subtractFlag = 0;
         subtractFlag1 = 0;
+
+        firstBracketIterator = 0;
         defaultOutputOperationColor();
 
     }
@@ -479,6 +481,8 @@ const errorWIndow = document.getElementById('error_window_id');
 const outputOperationContainer = document.getElementById('output-operation');
 
 
+
+
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement1);
 
 numberButtons.forEach(button => {
@@ -514,3 +518,19 @@ allClearButton.addEventListener('click', () => {
     calculator.clear();
     calculator.updateDisplay();
 })
+
+
+numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "lightgray"}));
+numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchend",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "#fff"}));
+
+operationButton.forEach((operaBut)=>{operaBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");operaBut.style.backgroundColor = "#acbfbdeb"})});
+operationButton.forEach((operaBut)=>{operaBut.addEventListener("touchend",()=>{console.log("tu chal raha hai");operaBut.style.backgroundColor = "#c0d6d4eb"})});
+
+equalButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");equalButton.style.backgroundColor = "#93CC62"});
+equalButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");equalButton.style.backgroundColor = "#ADF173"});
+
+allClearButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");allClearButton.style.backgroundColor = "#bfb1c1"});
+allClearButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");allClearButton.style.backgroundColor = "#dbccde"});
+
+deleteButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");deleteButton.style.backgroundColor = "lightgray"});
+deleteButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");deleteButton.style.backgroundColor = "#fff"});

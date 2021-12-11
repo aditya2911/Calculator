@@ -126,15 +126,22 @@ align-self: center;
     text-align: center;
     font-family: googlefont;
     font-size: 1.7rem;
-    transition: 0.2s ease-in;
-    unicode-bidi: embed;
+    /* unicode-bidi: embed; */
     /* box-shadow: 0 0 3px #c8c8c89e; */
 }
 
 .input-button:active{
+    transition:0.4s cubic-bezier(0, 0.01, 1, 1);
     border-radius: 20%;
-    background-color: lightgrey;
+
+    background-color: lightgray;
+
 }
+
+
+
+
+
 
 .AC-class {
     width: 4.3rem;
@@ -145,12 +152,13 @@ align-self: center;
     border: #000;
     text-align: center;
     font-family: googlefont;
-    transition: 0.2s ease-in;
     /* box-shadow: 0 0 3px #b4b4b4; */
 }
 .AC-class:active{
     border-radius: 20%;
     background-color: #bfb1c1;
+    transition:0.4s cubic-bezier(0, 0.01, 1, 1);
+
 }
 
 .algo-function-class {
@@ -162,15 +170,16 @@ align-self: center;
     border: #000;
     text-align: center;
     font-family: googlefont;
-    transition: 0.2s ease-in;
     /* box-shadow: 0 0 3px #b4b4b4; */
 }
 
 
 
 .algo-function-class:active{
-    border-radius: 20%;
     background-color: var(--Secondary-arthimatic-button-color);
+
+    border-radius: 20%;
+    transition:0.4s cubic-bezier(0, 0.01, 1, 1);
 }
 
 .equall-class{
@@ -182,14 +191,114 @@ align-self: center;
      border: #000;
     text-align: center;
     font-family: googlefont;
-    transition: 0.2s ease-in;
 
 
 }
 
 .equall-class:active{
     border-radius: 20%;
+    transition:0.4s cubic-bezier(0, 0.01, 1, 1);
+
     background-color: var(--Secondary-equal-button-color);
 }
 
+@media screen and (max-width:430px) {
 
+    :root{
+        font-size: 18px;
+    }
+
+    .input-button:active ,.algo-function-class:active ,.equall-class:active ,.AC-class:active{
+        border-radius: 20%;
+        transition: 0.4s cubic-bezier(0, 0.01, 1, 1);
+    
+    }
+    
+    .android-frame{
+        border: none;
+        box-shadow: none;
+        background-color: none;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .output-operation-class{
+        width: inherit;
+        border-radius: 0rem 0rem 1.2rem 1.2rem;
+    }
+
+    .input-class{
+        width: inherit;
+        border-radius: none;
+    }
+
+    /* .input-button{
+        width: 5.3rem;
+        height: 5.1rem;
+        font-size: 2rem;
+    } */
+
+    .algo-function-class , .AC-class, .input-button ,.equall-class{
+        width: 5.3rem;
+        height: 5.1rem;
+        font-size: 2rem;
+    }
+
+    .output-screen{
+        width:96vw;
+        font-size: 4rem;
+        justify-self: flex-end;
+        margin-right: 1.3rem;
+    }
+
+    .error-window{
+        max-width: 96vw;
+        font-size: 2.3rem;
+        margin-right: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .input-button img{
+        width:1.9rem;
+    }
+
+    /* .AC-class{
+
+    } */
+}
+
+/* @media screen and (max-width:420px) {
+:root{
+    font-size: 17.2px;
+} */
+
+@media screen and (max-width:400px) {
+    :root{
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width:380px) {
+    :root{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width:360px) {
+    :root{
+        font-size: 15.2px;
+    }
+}
+
+
+@media screen and (max-width:340px) {
+    :root{
+        font-size: 14.5px;
+    }
+}
+
+@media screen and (max-width:320px) {
+    :root{
+        font-size: 13.8px;
+    }
+}
