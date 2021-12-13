@@ -308,7 +308,7 @@ class Calculator {
             if (a1 == '+' || a1 == '%' || a1 == '×' || a1 == '÷' || a1 == '-') {
                 if (operationFlag == 0) {
                     console.log("you are here");
-                    this.currentOperand = calculator.currentOperand.toString() + a1
+                  let a =   this.currentOperand = this.currentOperand.toString() + a1
                     operationFlag = 1
                 }
 

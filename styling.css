@@ -21,6 +21,8 @@
     --Foreground-number-color: #1f1f1f;
    
     background-color: var(--Background-html-color);
+
+    --transition-time:0.2s cubic-bezier(0, 0.01, 1, 1);
     box-sizing: border-box;
 }
     
@@ -143,7 +145,7 @@ align-self: center;
 }
 
 .input-button:active{
-    transition:0.4s cubic-bezier(0, 0.01, 1, 1);
+    transition:var(--transition-time);
     border-radius: 20%;
 
     background-color: var(--Secondary-number-color);
@@ -169,7 +171,7 @@ align-self: center;
 .AC-class:active{
     border-radius: 20%;
     background-color: var(--Secondary-reset-button-color);
-    transition:0.4s cubic-bezier(0, 0.01, 1, 1);
+    transition:var(--transition-time);
 
 }
 
@@ -191,7 +193,7 @@ align-self: center;
     background-color: var(--Secondary-arthimatic-button-color);
 
     border-radius: 20%;
-    transition:0.4s cubic-bezier(0, 0.01, 1, 1);
+    transition:var(--transition-time);
 }
 
 .equall-class{
@@ -209,7 +211,7 @@ align-self: center;
 
 .equall-class:active{
     border-radius: 20%;
-    transition:0.4s cubic-bezier(0, 0.01, 1, 1);
+    transition:var(--transition-time);
 
     background-color: var(--Secondary-equal-button-color);
 }
