@@ -33,6 +33,37 @@
     src: url(font-resources/ProductSans-Regular.ttf);
 }
 
+@font-face {
+    font-family: OpenSansRegular;
+    src: url(font-resources/Open_Sans/static/OpenSans/OpenSans-Regular.ttf);
+}
+
+.mini-algo-function{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: auto;
+    width: 19.5rem;
+    height: 4rem;
+    background: inherit;
+    margin: 0.2rem 0;
+  
+}
+
+.mini-function-styling{
+    border: #000;
+    width: 3.5rem;
+    background-color: inherit;
+    transition: var(--transition-time);
+    font-size: 1.2rem;
+    font-family: OpenSansRegular;
+    font-weight: 500;
+}
+
+.mini-function-styling:active{
+    border-radius: 45%;
+    background-color: var(--Primary-number-color);
+}
+
 
 
 .main-class{
@@ -236,6 +267,15 @@ align-self: center;
         height: 100vh;
     }
 
+
+    .mini-algo-function{
+        width: 100vw;
+        
+    }
+
+    .mini-function-styling{
+        font-size: 1.5rem;
+    }
     .output-operation-class{
         width: inherit;
         border-radius: 0rem 0rem 1.2rem 1.2rem;

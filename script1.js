@@ -52,11 +52,41 @@ function computeAndOutput() {
     let inputTextElemenet = currentOperandTextElement1.value.toString();
     let tempMUl = inputTextElemenet.toString();
 
+    if(inputTextElemenet==="")return;
+    console.log(inputTextElemenet.length);
     let mul = '×';
     let div = '÷';
+    let Pi = "π"
+    let sqrt1 = '√'
 
     tempMUl = tempMUl.replaceAll(mul, '*');
     tempMUl = tempMUl.replaceAll(div, '/');
+    tempMUl = tempMUl.replaceAll(Pi,'pi')
+    tempMUl = tempMUl.replaceAll(sqrt1,'sqrt');
+
+    // let sqrtoutput ="";
+
+    // if(tempMUl.includes('√')){
+    //     console.log("hi sqer gang")
+    //     let sqrtIndex = tempMUl.indexOf('√');
+    //     console.log({sqrtIndex});
+    //     console.log("length:"+tempMUl.length);
+    //     for(let index = sqrtIndex+1;index<=tempMUl.length;index++){
+    //         console.log("you in");
+    //         console.log("true?"+typeof(tempMUl.charAt(index))=='number');
+    //         console.log("charAW+"+tempMUl.charAt(index));
+    //         let numberCheck = parseInt
+    //             if(parseInt(tempMUl.charAt(index))=='number')
+    //             {
+    //                 sqrtoutput = sqrtoutput +tempMUl.charAt(index);
+    //             }
+    //     }
+    // }
+    // console.log({sqrtoutput});
+    // tempMUl.replace('√',`sqrt(${sqrtoutput})`);
+
+
+
 
     console.log({ tempMUl });
     try {
@@ -197,6 +227,10 @@ class Calculator {
 
         let lastElement = currentOperandHolder11.charAt(currentOperandHolder11.length - 1)
 
+
+       
+        
+
         if (lastElement == "(" && (number == '×' || number == '÷')) return;
         if (number == '( )') {
 
@@ -236,7 +270,6 @@ class Calculator {
         else {
             // if (number == "." && this.currentOperand.includes(".")) return;
             if (number == "." && decimalFlag == 0) {
-                if (cursorPosition)
                 console.log("indside decimal land")
                     this.currentOperand = this.currentOperand.toString() + "."
                 decimalFlag = 1;
@@ -288,10 +321,12 @@ class Calculator {
             }
 
             if (number == '+' || number == '×' || number == '÷' || number == '-') { operationChecker(); }
-            if (number != ".")
+           
+            if (number != "." )
             { 
                 this.currentOperand = this.currentOperand.toString() + number.toString();
             }
+            
 
 
         }
@@ -324,6 +359,13 @@ class Calculator {
         if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-') {
             decimalFlag = 0; return;
         }
+
+         //check this stuff
+        //  if(number == "√"){
+        //     this.currentOperand = this.currentOperand + "√(";
+        //     calculator.updateDisplay();
+
+        // }
 
 
         if (number == '( )') {
@@ -479,7 +521,7 @@ const previousOperandTextElement = document.querySelector('[data-previous-operan
 const currentOperandTextElement1 = document.querySelector('[data-current-operand]');
 const errorWIndow = document.getElementById('error_window_id');
 const outputOperationContainer = document.getElementById('output-operation');
-
+const miniFunction = document.querySelectorAll("[data-mini-function]");
 
 
 
@@ -517,6 +559,12 @@ allClearButton.addEventListener('click', () => {
 
     calculator.clear();
     calculator.updateDisplay();
+})
+
+miniFunction.forEach((miniElement)=>{miniElement.addEventListener("click",()=>{
+        calculator.appendNumber(miniElement.innerText);
+        calculator.updateDisplay();
+    })
 })
 
 
