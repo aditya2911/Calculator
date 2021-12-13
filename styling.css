@@ -1,18 +1,30 @@
 :root{
-    --Primary-number-color : #FFF;
-    --Background-container-color : #ebebebeb;
-    --Reset-button-color : #dbccde;
-    --Primary-arithimatic-button-color : #c0d6d4eb;
-    --Secondary-arthimatic-button-color : #acbfbdeb;
-    --Primary-equal-button-color:#ADF173;
-    --Secondary-equal-button-color:#93CC62;
-    --Output-operation-color :#ccdedc;
-    --Background-html-color:#ecefd4;
-    --Foreground-number-color:#1f1f1f;
+    --Primary-number-color: #F6F7FB;
+    --Secondary-number-color:#D8D9DD;
+
+    --Background-container-color: #fff;
+   
+    --Reset-button-color: #c3EED0;
+    --Secondary-reset-button-color:#acd1b7;
+
+
+    --Primary-arithimatic-button-color: #c2E7FF;
+    --Secondary-arthimatic-button-color: #abcbe0;
+
+    --Primary-equal-button-color: #d3E3FD;
+    --Secondary-equal-button-color: #b7c7de;
+
+    --Output-operation-color: #E9EFFB;
+
+    --Background-html-color: #ecefd4;
+
+    --Foreground-number-color: #1f1f1f;
+   
     background-color: var(--Background-html-color);
     box-sizing: border-box;
-    
 }
+    
+
 
 @font-face {
     font-family: googlefont;
@@ -134,7 +146,7 @@ align-self: center;
     transition:0.4s cubic-bezier(0, 0.01, 1, 1);
     border-radius: 20%;
 
-    background-color: lightgray;
+    background-color: var(--Secondary-number-color);
 
 }
 
@@ -156,7 +168,7 @@ align-self: center;
 }
 .AC-class:active{
     border-radius: 20%;
-    background-color: #bfb1c1;
+    background-color: var(--Secondary-reset-button-color);
     transition:0.4s cubic-bezier(0, 0.01, 1, 1);
 
 }
@@ -210,7 +222,7 @@ align-self: center;
 
     .input-button:active ,.algo-function-class:active ,.equall-class:active ,.AC-class:active{
         border-radius: 20%;
-        transition: 0.4s cubic-bezier(0, 0.01, 1, 1);
+        transition: 0.08s cubic-bezier(0, 0.01, 1, 1);
     
     }
     
@@ -243,6 +255,8 @@ align-self: center;
         height: 5.1rem;
         font-size: 2rem;
     }
+
+    
 
     .output-screen{
         width:96vw;

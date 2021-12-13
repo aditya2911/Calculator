@@ -288,7 +288,10 @@ class Calculator {
             }
 
             if (number == '+' || number == '×' || number == '÷' || number == '-') { operationChecker(); }
-            if (number != ".") this.currentOperand = this.currentOperand.toString() + number.toString();
+            if (number != ".")
+            { 
+                this.currentOperand = this.currentOperand.toString() + number.toString();
+            }
 
 
         }
@@ -305,9 +308,6 @@ class Calculator {
             if (a1 == '+' || a1 == '%' || a1 == '×' || a1 == '÷' || a1 == '-') {
                 if (operationFlag == 0) {
                     console.log("you are here");
-
-
-
                     this.currentOperand = calculator.currentOperand.toString() + a1
                     operationFlag = 1
                 }
@@ -520,17 +520,17 @@ allClearButton.addEventListener('click', () => {
 })
 
 
-numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "lightgray"}));
-numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchend",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "#fff"}));
+numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "#D8D9DD"}));
+numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchend",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "#f6f7fb"}));
 
-operationButton.forEach((operaBut)=>{operaBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");operaBut.style.backgroundColor = "#acbfbdeb"})});
-operationButton.forEach((operaBut)=>{operaBut.addEventListener("touchend",()=>{console.log("tu chal raha hai");operaBut.style.backgroundColor = "#c0d6d4eb"})});
+operationButton.forEach((operaBut)=>{operaBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");operaBut.style.backgroundColor = "#abcbe0"})});
+operationButton.forEach((operaBut)=>{operaBut.addEventListener("touchend",()=>{console.log("tu chal raha hai");operaBut.style.backgroundColor = "#c3e7fe"})});
 
-equalButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");equalButton.style.backgroundColor = "#93CC62"});
-equalButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");equalButton.style.backgroundColor = "#ADF173"});
+equalButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");equalButton.style.backgroundColor = "#b7c7de"});
+equalButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");equalButton.style.backgroundColor = "#d3E3FD"});
 
-allClearButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");allClearButton.style.backgroundColor = "#bfb1c1"});
-allClearButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");allClearButton.style.backgroundColor = "#dbccde"});
+allClearButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");allClearButton.style.backgroundColor = "#acd1b7"});
+allClearButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");allClearButton.style.backgroundColor = "#c3EED0"});
 
-deleteButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");deleteButton.style.backgroundColor = "lightgray"});
-deleteButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");deleteButton.style.backgroundColor = "#fff"});
+deleteButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");deleteButton.style.backgroundColor = "#D8D9DD"});
+deleteButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");deleteButton.style.backgroundColor = "#f6f7fb"});
