@@ -18,6 +18,7 @@ let subtractFlag = 0;
 let subtractFlag1 = 0;
 let subtractFlag2 = 0;
 let firstBracketIterator = 0;
+let sqrtFlag = 0;
 
 
 // function doNothingWhenNumberInputed(){
@@ -58,10 +59,11 @@ function computeAndOutput() {
     let div = '÷';
     let Pi = "π"
     let sqrt1 = '√'
+    
 
     tempMUl = tempMUl.replaceAll(mul, '*');
     tempMUl = tempMUl.replaceAll(div, '/');
-    tempMUl = tempMUl.replaceAll(Pi,'pi')
+    tempMUl = tempMUl.replaceAll(Pi,'(pi)')
     tempMUl = tempMUl.replaceAll(sqrt1,'sqrt');
 
     // let sqrtoutput ="";
@@ -178,7 +180,10 @@ class Calculator {
     }
 
     delete() {
+        if(this.currentOperand.charAt(this.currentOperand.length-1)==')'){console.log("oh frusr brack");firstBracketIterator++;}
+        if(this.currentOperand.charAt(this.currentOperand.length-1)=='('){firstBracketIterator--;}
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
+
 
 
         (currenNum == "") ? "v" : workingarr.push(currenNum);
@@ -206,7 +211,8 @@ class Calculator {
     appendNumber(number) {
 
 
-
+       
+        
 
         defaultOutputOperationColor();
 
@@ -221,6 +227,7 @@ class Calculator {
 
         if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
         if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
+        if (number == '^' && this.currentOperand == '') { console.log("he;l"); return; }
         // if (number == '%' && this.currentOperand == '') { console.log("he;l"); return; }
 
         let currentOperandHolder11 = calculator.currentOperand;
@@ -228,7 +235,20 @@ class Calculator {
         let lastElement = currentOperandHolder11.charAt(currentOperandHolder11.length - 1)
 
 
-       
+        if(number == "√" && firstBracketIterator >0)return;
+        // if(number =="√" && sqrtFlag == 0 )
+        // {
+        //     this.currentOperand = this.currentOperand.toString() + "√"
+        //     sqrtFlag = 1;
+        // }
+        // else{
+        //     sqrtFlag =0;
+        // }
+
+        
+     
+
+        if(number == "^" && isNaN(lastElement) )return;
         
 
         if (lastElement == "(" && (number == '×' || number == '÷')) return;
@@ -238,7 +258,7 @@ class Calculator {
 
 
             // if(firstBracketIterator>0){
-            if (indicator == 1 && (!isNaN(lastElement)) || lastElement == ")" || lastElement == "%") {
+            if (indicator == 1 && (!isNaN(lastElement)) || lastElement == ")" || lastElement == "%" || lastElement == "π"){
                 if (currenNum != "") workingarr.push(currenNum);
 
 
@@ -321,9 +341,15 @@ class Calculator {
             }
 
             if (number == '+' || number == '×' || number == '÷' || number == '-') { operationChecker(); }
+
+            // if(number=="√")
+            // {
+            //     this.currentOperand = this.currentOperand.toString + "√";
+            // }
            
-            if (number != "." )
+            if (number != "."   )
             { 
+                console.log("hi number"+number);
                 this.currentOperand = this.currentOperand.toString() + number.toString();
             }
             
@@ -380,11 +406,10 @@ class Calculator {
                 flag = 1;
             }
         }
-        if (number != "( )") {
             if (number == '.' && currenNum.includes('.')) {
                 console.log("why decimal")
                 return;
-            }
+            
             currenNum += number;
         }
 
@@ -522,10 +547,17 @@ const currentOperandTextElement1 = document.querySelector('[data-current-operand
 const errorWIndow = document.getElementById('error_window_id');
 const outputOperationContainer = document.getElementById('output-operation');
 const miniFunction = document.querySelectorAll("[data-mini-function]");
+const sqrt = document.querySelector("[data-mini-sqrt]");
 
 
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement1);
+
+sqrt.addEventListener("click",()=>{
+    calculator.appendNumber("√");
+    calculator.appendNumber("( )");
+    calculator.updateDisplay();
+})
 
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -566,6 +598,8 @@ miniFunction.forEach((miniElement)=>{miniElement.addEventListener("click",()=>{
         calculator.updateDisplay();
     })
 })
+
+
 
 
 numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "#D8D9DD"}));

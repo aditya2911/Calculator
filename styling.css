@@ -55,12 +55,13 @@
     background-color: inherit;
     transition: var(--transition-time);
     font-size: 1.2rem;
-    font-family: OpenSansRegular;
+    font-family: 'googlefont';
     font-weight: 500;
+    height: 2rem;
 }
 
 .mini-function-styling:active{
-    border-radius: 45%;
+    border-radius: 31.25rem;
     background-color: var(--Primary-number-color);
 }
 
@@ -247,6 +248,9 @@ align-self: center;
     background-color: var(--Secondary-equal-button-color);
 }
 
+
+
+
 @media screen and (max-width:430px) {
 
     :root{
@@ -318,19 +322,18 @@ align-self: center;
         width:1.9rem;
     }
 
-    /* .AC-class{
-
-    } */
+   
 }
 
-/* @media screen and (max-width:420px) {
-:root{
-    font-size: 17.2px;
-} */
 
 @media screen and (max-width:400px) {
     :root{
         font-size: 17px;
+    }
+    .algo-function-class , .AC-class, .input-button ,.equall-class{
+        width: 5.3rem;
+        height: 5.1rem;
+        font-size: 2rem;
     }
 }
 
@@ -358,3 +361,14 @@ align-self: center;
         font-size: 13.8px;
     }
 }
+
+/* @media screen  and (max-height:660px) {
+    .algo-function-class, .AC-class, .input-button, .equall-class {
+        width: 5rem;
+        height: 4rem;
+        font-size: 2rem;
+        border-radius: 500px;
+        font-size: 1.7rem;
+} */
+
+
