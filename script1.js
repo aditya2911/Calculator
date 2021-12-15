@@ -26,18 +26,17 @@ let sqrtFlag = 0;
 //     return;
 // }
 
+let cursorPosition;
+function cursorPosition1() {
+    cursorPosition = currentOperandTextElement1.selectionStart;
+    return cursorPosition;
+}
 
 window.oncontextmenu = function(event) {
     event.preventDefault();
     event.stopPropagation();
     return false;
 };
-
-let cursorPosition;
-function cursorPosition1() {
-    cursorPosition = currentOperandTextElement1.selectionStart;
-    return cursorPosition;
-}
 
 // var cursorPosition2 = currentOperandTextElement1.prop("selectionStart");
 // console.log({cursorPosition2})
@@ -189,30 +188,32 @@ class Calculator {
     delete() {
         if(this.currentOperand.charAt(this.currentOperand.length-1)==')'){console.log("oh frusr brack");firstBracketIterator++;}
         if(this.currentOperand.charAt(this.currentOperand.length-1)=='('){firstBracketIterator--;}
+        if(this.currentOperand.charAt(this.currentOperand.length-1)=='.'){decimalFlag =0}
+        if(this.currentOperand.charAt(this.currentOperand.length-1)=='(' && sqrtFlag==0){sqrtFlag =1}
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
 
 
 
-    //     (currenNum == "") ? "v" : workingarr.push(currenNum);
-    //     if (workingarr.at(-1) != '') {
-    //         let indexElement = workingarr.at(-1);
-    //         console.log("indexELement" + indexElement)
-    //         let changedElement = indexElement.toString().slice(0, -1);
-    //         workingarr[workingarr.length - 1] = changedElement.toString();
+        // (currenNum == "") ? "v" : workingarr.push(currenNum);
+        // if (workingarr.at(-1) != '') {
+        //     let indexElement = workingarr.at(-1);
+        //     console.log("indexELement" + indexElement)
+        //     let changedElement = indexElement.toString().slice(0, -1);
+        //     workingarr[workingarr.length - 1] = changedElement.toString();
 
-    //         if (changedElement == '') workingarr.pop();
-    //         console.log("changed man" + changedElement);
-    //         console.log("length:" + workingarr.length);
-    //     }
-    //     else {
-    //         console.log("why are u here");
-    //         workingarr.pop();
-    //     }
-    //     currenNum = "";
+        //     if (changedElement == '') workingarr.pop();
+        //     console.log("changed man" + changedElement);
+        //     console.log("length:" + workingarr.length);
+        // }
+        // else {
+        //     console.log("why are u here");
+        //     workingarr.pop();
+        // }
+        // currenNum = "";
 
-    //    defaultOutputOperationColor();
+       defaultOutputOperationColor();
 
-    //     console.log("pop pop " + workingarr);
+        console.log("pop pop " + workingarr);
     }
 
     appendNumber(number) {
@@ -242,7 +243,7 @@ class Calculator {
         let lastElement = currentOperandHolder11.charAt(currentOperandHolder11.length - 1)
 
 
-        if(number == "√" && firstBracketIterator >0)return;
+        if(number == "√" && firstBracketIterator >0 &&sqrtFlag ==1) return;
         // if(number =="√" && sqrtFlag == 0 )
         // {
         //     this.currentOperand = this.currentOperand.toString() + "√"
@@ -254,18 +255,18 @@ class Calculator {
 
         
         
-        // if(number == "^" && (isNaN(lastElement) ))return;
-        if(number == "^" && (lastElement == '+' || lastElement == '×' || lastElement == '÷' || lastElement == '-' ||lastElement=="(" || lastElement=="^" ) )return;
+        // if(number == "^" && (isNaN(lastElement) ))
+        if(number == "^" && (lastElement == '+' || lastElement == '×' || lastElement == '÷' || lastElement == '-' ||lastElement=="("||lastElement=="%" ||lastElement=="^") )return;
         
 
         if (lastElement == "(" && (number == '×' || number == '÷')) return;
         if (number == '( )') {
 
-
-
+            sqrtFlag =0;
+            decimalFlag =0;
 
             // if(firstBracketIterator>0){
-            if (indicator == 1 && (!isNaN(lastElement)) || lastElement == ")" || lastElement == "%" || lastElement == "π"){
+            if (indicator == 1 && (!isNaN(lastElement)) || lastElement == ")" || lastElement == "%" || lastElement == "π" ||lastElement =="!"){
                 if (currenNum != "") workingarr.push(currenNum);
 
 
@@ -389,7 +390,7 @@ class Calculator {
 
         // console.log({convertToNum});
 
-        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-') {
+        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-' || number == ')' || number == '(') {
             decimalFlag = 0; return;
         }
 
@@ -401,18 +402,18 @@ class Calculator {
         // }
 
 
-        if (number == '( )') {
-            console.log("inside flag")
+        // if (number == '( )') {
+        //     console.log("inside flag")
 
-            if (flag == 1) {
-                workingarr.push(")")
-                flag = 0;
-            }
-            else {
-                workingarr.push("(");
-                flag = 1;
-            }
-        }
+        //     if (flag == 1) {
+        //         workingarr.push(")")
+        //         flag = 0;
+        //     }
+        //     else {
+        //         workingarr.push("(");
+        //         flag = 1;
+        //     }
+        // }
             if (number == '.' && currenNum.includes('.')) {
                 console.log("why decimal")
                 return;
@@ -562,6 +563,7 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 
 sqrt.addEventListener("click",()=>{
     calculator.appendNumber("√");
+    sqrtFlag =1;
     calculator.appendNumber("( )");
     calculator.updateDisplay();
 })
