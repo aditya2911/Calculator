@@ -99,6 +99,7 @@ function computeAndOutput() {
     console.log({ tempMUl });
     try {
         let output = math.evaluate(tempMUl);
+     
         return math.round(output,3);
         
       
@@ -179,7 +180,7 @@ class Calculator {
         console.log("THanos " + workingarr);
         subtractFlag = 0;
         subtractFlag1 = 0;
-
+        sqrtFlag =0;
         firstBracketIterator = 0;
         defaultOutputOperationColor();
 
@@ -266,7 +267,7 @@ class Calculator {
             decimalFlag =0;
 
             // if(firstBracketIterator>0){
-            if (indicator == 1 && (!isNaN(lastElement)) || lastElement == ")" || lastElement == "%" || lastElement == "π" ||lastElement =="!"){
+            if (indicator == 1 && (!isNaN(lastElement)) || lastElement == ")" || lastElement == "%" || lastElement == "π" ||lastElement =="!"||lastElement=="."){
                 if (currenNum != "") workingarr.push(currenNum);
 
 
@@ -390,7 +391,12 @@ class Calculator {
 
         // console.log({convertToNum});
 
-        if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-' || number == ')' || number == '(') {
+        // if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-' || number == ')' ||
+        //  number == '('|| number == '^'|| number == 'π') {
+        //     decimalFlag = 0; return;
+        // }
+
+        if(isNaN(number) && number!="."){
             decimalFlag = 0; return;
         }
 
@@ -485,6 +491,7 @@ class Calculator {
         
         currentOperandTextElement1.value = output1.toString();
         this.currentOperand = output1.toString();
+        if(this.currentOperand.includes("."))decimalFlag =1;
         calculator.updateDisplay();
 
 
