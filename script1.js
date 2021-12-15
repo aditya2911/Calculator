@@ -246,9 +246,9 @@ class Calculator {
         // }
 
         
-     
-
-        if(number == "^" && isNaN(lastElement) )return;
+        
+        // if(number == "^" && (isNaN(lastElement) ))return;
+        if(number == "^" && (lastElement == '+' || lastElement == '×' || lastElement == '÷' || lastElement == '-' ||lastElement=="(" || lastElement=="^" ) )return;
         
 
         if (lastElement == "(" && (number == '×' || number == '÷')) return;
