@@ -26,6 +26,13 @@ let sqrtFlag = 0;
 //     return;
 // }
 
+
+window.oncontextmenu = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+};
+
 let cursorPosition;
 function cursorPosition1() {
     cursorPosition = currentOperandTextElement1.selectionStart;
@@ -186,26 +193,26 @@ class Calculator {
 
 
 
-        (currenNum == "") ? "v" : workingarr.push(currenNum);
-        if (workingarr.at(-1) != '') {
-            let indexElement = workingarr.at(-1);
-            console.log("indexELement" + indexElement)
-            let changedElement = indexElement.toString().slice(0, -1);
-            workingarr[workingarr.length - 1] = changedElement.toString();
+    //     (currenNum == "") ? "v" : workingarr.push(currenNum);
+    //     if (workingarr.at(-1) != '') {
+    //         let indexElement = workingarr.at(-1);
+    //         console.log("indexELement" + indexElement)
+    //         let changedElement = indexElement.toString().slice(0, -1);
+    //         workingarr[workingarr.length - 1] = changedElement.toString();
 
-            if (changedElement == '') workingarr.pop();
-            console.log("changed man" + changedElement);
-            console.log("length:" + workingarr.length);
-        }
-        else {
-            console.log("why are u here");
-            workingarr.pop();
-        }
-        currenNum = "";
+    //         if (changedElement == '') workingarr.pop();
+    //         console.log("changed man" + changedElement);
+    //         console.log("length:" + workingarr.length);
+    //     }
+    //     else {
+    //         console.log("why are u here");
+    //         workingarr.pop();
+    //     }
+    //     currenNum = "";
 
-       defaultOutputOperationColor();
+    //    defaultOutputOperationColor();
 
-        console.log("pop pop " + workingarr);
+    //     console.log("pop pop " + workingarr);
     }
 
     appendNumber(number) {
