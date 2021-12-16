@@ -20,7 +20,13 @@ let subtractFlag2 = 0;
 let firstBracketIterator = 0;
 let sqrtFlag = 0;
 let minifunctionFlag =0
-    
+let equalFlag = 0
+
+function realtimeOperation() {
+    let realtimeOutput = computeAndOutput();
+    console.log("realtimeOutput"+realtimeOutput);
+    if(typeof(realtimeOutput)== "number")errorWIndow.textContent = realtimeOutput.toString();
+}
 
 
 
@@ -49,13 +55,17 @@ function ifTextElementEmptyAndOperand() {
 }
 
 function  outputOperationColorChanger() {
-    errorWIndow.textContent = "Format error";
+   
     outputOperationContainer.style.color = "#FF5722";
+    errorWIndow.style.color = "#FF5722";
+    errorWIndow.textContent = "Format error";
+ 
 }
 
 function defaultOutputOperationColor(){
     errorWIndow.textContent = "";
-    outputOperationContainer.style.color = "#1f1f1f";
+    outputOperationContainer.style.color = '#1e1e1f'
+    errorWIndow.style.color = "#444646";
 }
 
 function computeAndOutput() {
@@ -108,8 +118,11 @@ function computeAndOutput() {
       
     }
     catch (e) {
-
-        outputOperationColorChanger();
+        if(equalFlag ==1){ 
+            outputOperationColorChanger();
+           
+        }
+        equalFlag = 0;
 
 
     }
@@ -186,6 +199,7 @@ class Calculator {
         sqrtFlag =0;
         firstBracketIterator = 0;
         minifunctionFlag =0;
+        equalFlag = 0;
         defaultOutputOperationColor();
 
     }
@@ -351,7 +365,7 @@ class Calculator {
             }
 
             if (a11 == '%' && number == "-") {
-                if (subtractFlag1 == 0) {
+                if (subtractFlag2 == 0) {
                     this.currentOperand = calculator.currentOperand.toString() + "-";
                     console.log("ypu in subtract land 111");
                     subtractFlag2 = 1
@@ -375,6 +389,7 @@ class Calculator {
             { 
                 console.log("hi number"+number);
                 this.currentOperand = this.currentOperand.toString() + number.toString();
+                
             }
             
 
@@ -385,6 +400,7 @@ class Calculator {
         console.log((number));
 
         function operationChecker() {
+            
             let currentOperandHolder = calculator.currentOperand;
             let a1 = currentOperandHolder.charAt(currentOperandHolder.length - 1);
             let b1 = parseFloat(a1);
@@ -395,13 +411,16 @@ class Calculator {
                     console.log("you are here");
                   let a =   this.currentOperand = this.currentOperand.toString() + a1
                     operationFlag = 1
+                    
                 }
 
             }
             else {
                 console.log("must have pressed a number");
                 operationFlag = 0;
+                
             }
+          
         }
 
         // console.log({convertToNum});
@@ -442,10 +461,7 @@ class Calculator {
             currenNum += number;
         }
 
-        // let realtimeOutput = computeAndOutput();
-        // console.log("realtimeOutput"+realtimeOutput);
-        // if(typeof(realtimeOutput)!= "undefined")errorWIndow.textContent = realtimeOutput.toString();
-        
+      
 
     }
     chooseOperation(operation) {
@@ -507,6 +523,7 @@ class Calculator {
         currentOperandTextElement1.value = output1.toString();
         this.currentOperand = output1.toString();
         if(this.currentOperand.includes("."))decimalFlag =1;
+        errorWIndow.textContent = "";
         calculator.updateDisplay();
 
 
@@ -584,22 +601,28 @@ const sqrt = document.querySelector("[data-mini-sqrt]");
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement1);
 
 sqrt.addEventListener("click",()=>{
+    equalFlag = 0;
     calculator.appendNumber("√");
     sqrtFlag =1;
     calculator.appendNumber("( )");
     calculator.updateDisplay();
+    realtimeOperation();
 })
 
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
         calculator.appendNumber(button.innerText);
         calculator.updateDisplay();
+     
+        realtimeOperation();
+        
     })
 })
 
 operationButton.forEach(b1 => {
     b1.addEventListener("click", () => {
         // console.log(button.innerText)
+        equalFlag =0;
         calculator.appendNumber(b1.innerText);
         calculator.updateDisplay();
         calculator.pushNumber(b1.innerText);
@@ -607,7 +630,9 @@ operationButton.forEach(b1 => {
 })
 
 equalButton.addEventListener('click', () => {
+    equalFlag =1;
     calculator.compute();
+    
     workingarr.push(currenNum);
     console.log("you pressed equal " + workingarr);
     // calculator.clear();
@@ -625,8 +650,10 @@ allClearButton.addEventListener('click', () => {
 })
 
 miniFunction.forEach((miniElement)=>{miniElement.addEventListener("click",()=>{
+        equalFlag =0;
         calculator.appendNumber(miniElement.innerText);
         calculator.updateDisplay();
+        realtimeOperation();
     })
 })
 
