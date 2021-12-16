@@ -194,7 +194,7 @@ class Calculator {
         if(this.currentOperand.charAt(this.currentOperand.length-1)==')'){console.log("oh frusr brack");firstBracketIterator++;}
         if(this.currentOperand.charAt(this.currentOperand.length-1)=='('){firstBracketIterator--;}
         if(this.currentOperand.charAt(this.currentOperand.length-1)=='.'){decimalFlag =0}
-        if(this.currentOperand.charAt(this.currentOperand.length-1)=='(' && sqrtFlag==0){sqrtFlag =1}
+        // if(this.currentOperand.charAt(this.currentOperand.length-1)=='(' && sqrtFlag==0){sqrtFlag =1}
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
 
 
@@ -271,22 +271,29 @@ class Calculator {
             decimalFlag =0;
 
             // if(firstBracketIterator>0){
-            if (indicator == 1 && (!isNaN(lastElement)) || lastElement == ")" || lastElement == "%" || lastElement == "π" ||lastElement =="!"||lastElement=="."){
+            if ((indicator == 1) && (!isNaN(lastElement) ||lastElement == ")" || lastElement == "%" || lastElement == "π" ||lastElement =="!"||lastElement==".")) {
                 if (currenNum != "") workingarr.push(currenNum);
 
 
-                if (firstBracketIterator > 0) {
+                if ((firstBracketIterator > 0) &&  (lastElement == ")" || lastElement == "%" || lastElement == "π" ||lastElement =="!"||lastElement==".")) {
+                    this.currentOperand = this.currentOperand.toString() + ")";
+                    firstBracketIterator--;
+                }
+                else{
+
+                if ((firstBracketIterator > 0)) {
                     this.currentOperand = this.currentOperand.toString() + ")";
                     firstBracketIterator--;
                     minifunctionFlag =0;
 
 
                 }
+            }
 
                 console.log("end wale bracket nme ho aap");
 
                 // firstBracketIterator =0;
-                if (firstBracketIterator == 0) indicator = 0;
+                // if (firstBracketIterator == 0) indicator = 0;
                 currenNum = ""
 
                
@@ -294,6 +301,7 @@ class Calculator {
             //}
             else {
                 // if(currenNum!="")workingarr.push(currenNum);
+              
                 this.currentOperand = this.currentOperand.toString() + "("
                 indicator = 1;
                 currenNum = ""
