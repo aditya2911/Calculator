@@ -19,6 +19,9 @@ let subtractFlag1 = 0;
 let subtractFlag2 = 0;
 let firstBracketIterator = 0;
 let sqrtFlag = 0;
+let minifunctionFlag =0
+    
+
 
 
 // function doNothingWhenNumberInputed(){
@@ -182,6 +185,7 @@ class Calculator {
         subtractFlag1 = 0;
         sqrtFlag =0;
         firstBracketIterator = 0;
+        minifunctionFlag =0;
         defaultOutputOperationColor();
 
     }
@@ -274,6 +278,7 @@ class Calculator {
                 if (firstBracketIterator > 0) {
                     this.currentOperand = this.currentOperand.toString() + ")";
                     firstBracketIterator--;
+                    minifunctionFlag =0;
 
 
                 }
@@ -283,6 +288,8 @@ class Calculator {
                 // firstBracketIterator =0;
                 if (firstBracketIterator == 0) indicator = 0;
                 currenNum = ""
+
+               
             }
             //}
             else {
