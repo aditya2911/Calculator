@@ -1,3 +1,4 @@
+// initialize variable for iterating
 
 let index = [];
 let mulIndex;
@@ -6,9 +7,9 @@ let operand2;
 let mul;
 let result = 1;
 
-let workingarr = [];
 
-let currenNum = "";
+// creating variable which will serves as flag to decide if a input should be allowed or not
+
 let flag = 0;
 let indicator = 0;
 let decimalFlag = 0;
@@ -19,111 +20,98 @@ let subtractFlag1 = 0;
 let subtractFlag2 = 0;
 let firstBracketIterator = 0;
 let sqrtFlag = 0;
-let minifunctionFlag =0
+let minifunctionFlag = 0
 let equalFlag = 0
-let firstOperandFlag =0;
+let firstOperandFlag = 0;
 let lastinput;
 
+
+// helper function which produces output and display it on secondary text field
+
 function realtimeOperation() {
+
+
     let realtimeOutput = computeAndOutput();
-    console.log("realtimeOutput"+realtimeOutput);
-    // console.log({isNaN(realtimeOutput)});
-    if(typeof(realtimeOutput) == "number" && firstOperandFlag == 1)errorWIndow.value = realtimeOutput.toString();
+
+    if (typeof (realtimeOutput) == "number" && firstOperandFlag == 1) errorWIndow.value = realtimeOutput.toString();
 }
 
 
-
-// function doNothingWhenNumberInputed(){
-//     console.log("here num input")
-//     return;
-// }
-
-let cursorPosition;
-function cursorPosition1() {
-    cursorPosition = currentOperandTextElement1.selectionStart;
-    return cursorPosition;
-}
-
-window.oncontextmenu = function(event) {
+// used to disable the default behaviour of browser
+window.oncontextmenu = function (event) {
     event.preventDefault();
     event.stopPropagation();
     return false;
 };
 
-// var cursorPosition2 = currentOperandTextElement1.prop("selectionStart");
-// console.log({cursorPosition2})
+// helper function which checks if text field is empty and decides if to allow input to display
 function ifTextElementEmptyAndOperand() {
-    if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
-    if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
+    if (number == '÷' && this.currentOperand == '') { return; }
+    if (number == '×' && this.currentOperand == '') {  return; }
 }
 
-function  outputOperationColorChanger() {
-   
+
+// function that changes color of font on format error
+function outputOperationColorChanger() {
+
     outputOperationContainer.style.color = "#FF5722";
     errorWIndow.style.color = "#FF5722";
     errorWIndow.value = "Format error";
- 
+
 }
 
-function defaultOutputOperationColor(){
+
+
+// function that changes color of font to default color when user All clear , inputs or delete some inputs
+function defaultOutputOperationColor() {
     errorWIndow.value = "";
     outputOperationContainer.style.color = '#1e1e1f'
     errorWIndow.style.color = "#444646";
 }
 
+
+// helper function which takes the input from @output-screen , computes and outputs its;
 function computeAndOutput() {
     let inputTextElemenet = currentOperandTextElement1.value.toString();
     let tempMUl = inputTextElemenet.toString();
 
-    if(inputTextElemenet==="")return;
-    console.log(inputTextElemenet.length);
+
+// basic check to see if @output-screen is empty
+    if (inputTextElemenet === "") return;
+
     let mul = '×';
     let div = '÷';
     let Pi = "π"
     let sqrt1 = '√'
-    
 
+
+    // replaces the above characters , to allow easy parsing and computation by our mathJS library
     tempMUl = tempMUl.replaceAll(mul, '*');
     tempMUl = tempMUl.replaceAll(div, '/');
-    tempMUl = tempMUl.replaceAll(Pi,'(pi)')
-    tempMUl = tempMUl.replaceAll(sqrt1,'sqrt');
-
-    // let sqrtoutput ="";
-
-    // if(tempMUl.includes('√')){
-    //     console.log("hi sqer gang")
-    //     let sqrtIndex = tempMUl.indexOf('√');
-    //     console.log({sqrtIndex});
-    //     console.log("length:"+tempMUl.length);
-    //     for(let index = sqrtIndex+1;index<=tempMUl.length;index++){
-    //         console.log("you in");
-    //         console.log("true?"+typeof(tempMUl.charAt(index))=='number');
-    //         console.log("charAW+"+tempMUl.charAt(index));
-    //         let numberCheck = parseInt
-    //             if(parseInt(tempMUl.charAt(index))=='number')
-    //             {
-    //                 sqrtoutput = sqrtoutput +tempMUl.charAt(index);
-    //             }
-    //     }
-    // }
-    // console.log({sqrtoutput});
-    // tempMUl.replace('√',`sqrt(${sqrtoutput})`);
+    tempMUl = tempMUl.replaceAll(Pi, '(pi)')
+    tempMUl = tempMUl.replaceAll(sqrt1, 'sqrt');
 
 
 
 
-    console.log({ tempMUl });
+  
     try {
+
+        // mathJs library computes 
         let output = math.evaluate(tempMUl);
-     
-        return math.round(output,3);
-        
-      
+
+        // output rounded to 3 digits
+        return math.round(output, 3);
+
+
     }
     catch (e) {
-        if(equalFlag ==1){ 
+
+        // equalFlag is used to check if user pressed equal button and 
+        //then only allow any format error to show
+        if (equalFlag == 1) {
             outputOperationColorChanger();
-           
+
         }
         equalFlag = 0;
 
@@ -132,61 +120,18 @@ function computeAndOutput() {
 }
 
 
-function replaceAt(groupofchar, index, replacement) {
-    console.log("apna index " + index);
-    let tempAttCr = [];
-    let iValue = index - 2;
-    console.log("RePLACEMENT " + replacement);
-    tempAttCr = Array.from(groupofchar.toString());
-    console.log("apna array" + tempAttCr);
-    let tempReplacementholder = replacement.toString();
 
-    for (let h = iValue; h <= index; h++) {
-        let consoleArr = [];
-        console.log("i is " + h);
-        consoleArr.push(tempAttCr[h]);
-        console.log("CONSOLEAR " + consoleArr);
-
-        delete tempAttCr[h];
-        console.log("currentCOndtion " + tempAttCr);
-
-
-    }
-    console.log("tempAttCR " + tempAttCr);
-    tempAttCr[index - 1] = tempReplacementholder;
-    console.log("thisis indexc " + index)
-    console.log("tempAttCR " + tempAttCr);
-
-
-    let temp1 = [];
-
-    for (let j of tempAttCr) {
-        j && temp1.push(j);
-
-    }
-    console.log("temp1" + temp1.length);
-    console.log('this is temp1' + temp1);
-
-    let tempString = '';
-    for (let y = 0; y < temp1.length; y++) {
-        console.log("temp1 values " + temp1[y]);
-        tempString = tempString + temp1[y].toString();
-        console.log('we iteratubng' + tempString)
-    }
-    console.log('tempoString' + tempString.length);
-    let test = Array.from(tempString);
-    console.log('Test' + test);
-    return tempString;
-
-}
+// class Calculator which will contain all our basic operation
 
 class Calculator {
-    constructor(previousOperandTextElement, currentOperandTextElement) {
-        this.previousOperandTextElement = previousOperandTextElement
-        this.currentOperandTextElement = currentOperandTextElement
-        this.clear()
+    constructor( currentOperandTextElement) {
+    
+        this.currentOperandTextElement = currentOperandTextElement;
+        this.clear();
     }
 
+
+// all clear function which reset every value and flags
     clear() {
         this.currentOperand = '';
         this.previousOperandText = ''
@@ -195,159 +140,134 @@ class Calculator {
         decimalFlag = 0;
         indicator = 0;
         operationFlag = 0;
-        workingarr = new Array;
-        console.log("THanos " + workingarr);
         subtractFlag = 0;
         subtractFlag1 = 0;
-        sqrtFlag =0;
+        sqrtFlag = 0;
         firstBracketIterator = 0;
-        minifunctionFlag =0;
+        minifunctionFlag = 0;
         equalFlag = 0;
-        firstOperandFlag =0;
+        firstOperandFlag = 0;
+
+        // defaults colors of font on all clear
         defaultOutputOperationColor();
 
     }
 
     delete() {
-        if(this.currentOperand.charAt(this.currentOperand.length-1)==')'){console.log("oh frusr brack");firstBracketIterator++;}
-        if(this.currentOperand.charAt(this.currentOperand.length-1)=='('){firstBracketIterator--;}
-        if(this.currentOperand.charAt(this.currentOperand.length-1)=='.'){decimalFlag =0}
-        // if(this.currentOperand.charAt(this.currentOperand.length-1)=='(' && sqrtFlag==0){sqrtFlag =1}
-       
-       
-      
+
+        //reset flag when a respective input is deleted
+        if (this.currentOperand.charAt(this.currentOperand.length - 1) == ')') {  firstBracketIterator++; }
+        if (this.currentOperand.charAt(this.currentOperand.length - 1) == '(') { firstBracketIterator--; }
+        if (this.currentOperand.charAt(this.currentOperand.length - 1) == '.') { decimalFlag = 0 }
+
+       // removing last input
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
-      
-        
-     
- 
-        // (currenNum == "") ? "v" : workingarr.push(currenNum);
-        // if (workingarr.at(-1) != '') {
-        //     let indexElement = workingarr.at(-1);
-        //     console.log("indexELement" + indexElement)
-        //     let changedElement = indexElement.toString().slice(0, -1);
-        //     workingarr[workingarr.length - 1] = changedElement.toString();
-
-        //     if (changedElement == '') workingarr.pop();
-        //     console.log("changed man" + changedElement);
-        //     console.log("length:" + workingarr.length);
-        // }
-        // else {
-        //     console.log("why are u here");
-        //     workingarr.pop();
-        // }
-        // currenNum = "";
-
-       defaultOutputOperationColor();
-
-        console.log("pop pop " + workingarr);
-    }
-
-    appendNumber(number) {
-
-
-       
-        
 
         defaultOutputOperationColor();
 
-        errorWIndow.value ="";
-        console.log(number);
-        // let cursor = cursorPosition1();
-        // if(cursor<currentOperandTextElement1.length){
-        //     console.log("you in cursor land")
-        //     if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
-        //     if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
-        // }
+       
+    }
 
-        if (number == '÷' && this.currentOperand == '') { console.log("he;l"); return; }
-        if (number == '×' && this.currentOperand == '') { console.log("he;l"); return; }
-        if (number == '^' && this.currentOperand == '') { console.log("he;l"); return; }
-        // if (number == '%' && this.currentOperand == '') { console.log("he;l"); return; }
+    // helper function that appends number to end and also decides whether a input should be appended
+    appendNumber(number) {
+
+        defaultOutputOperationColor();
+
+        // resetting secondary text element
+        errorWIndow.value = "";
+       
+
+            // doesnot allow following operation to display  if the text input is empty
+        if (number == '÷' && this.currentOperand == '') { return; }
+        if (number == '×' && this.currentOperand == '') { return; }
+        if (number == '^' && this.currentOperand == '') { return; }
+
 
         let currentOperandHolder11 = calculator.currentOperand;
 
-        let lastElement = currentOperandHolder11.charAt(currentOperandHolder11.length - 1)
+        let lastElement = currentOperandHolder11.charAt(currentOperandHolder11.length - 1);
 
 
-        if(number == "√" && firstBracketIterator >0 &&sqrtFlag ==1) return;
-        // if(number =="√" && sqrtFlag == 0 )
-        // {
-        //     this.currentOperand = this.currentOperand.toString() + "√"
-        //     sqrtFlag = 1;
-        // }
-        // else{
-        //     sqrtFlag =0;
-        // }
 
-        
-        
-        // if(number == "^" && (isNaN(lastElement) ))
-        if(number == "^" && (lastElement == '+' || lastElement == '×' || lastElement == '÷' || lastElement == '-' ||lastElement=="("||lastElement=="%" ||lastElement=="^") )return;
-        
+        // deciding whether operation should be appended  or not based on last and second last element
+        if (number == "√" && firstBracketIterator > 0 && sqrtFlag == 1) return;
+
+        if (number == "^" && (lastElement == '+' || lastElement == '×' || lastElement == '÷' || 
+        lastElement == '-' || lastElement == "("  || lastElement == "^")) return;
 
         if (lastElement == "(" && (number == '×' || number == '÷')) return;
+
+
+
         if (number == '( )') {
 
-            sqrtFlag =0;
-            decimalFlag =0;
-
-            // if(firstBracketIterator>0){
-            if ((indicator == 1) && (!isNaN(lastElement) ||lastElement == ")" || lastElement == "%" || lastElement == "π" ||lastElement =="!"||lastElement==".")) {
-                if (currenNum != "") workingarr.push(currenNum);
+            sqrtFlag = 0;
+            decimalFlag = 0;
 
 
-                if ((firstBracketIterator > 0) &&  (lastElement == ")" || lastElement == "%" || lastElement == "π" ||lastElement =="!"||lastElement==".")) {
+            // deciding based on indicator flag what should be done, also check last element is a number
+            if ((indicator == 1) && (!isNaN(lastElement) || lastElement == ")" || lastElement == "%" ||
+             lastElement == "π" || lastElement == "!" || lastElement == ".")) {
+             
+
+
+                // iterator that closes all the remaining opening brackets for the following operations
+                if ((firstBracketIterator > 0) && (lastElement == ")" ||
+                 lastElement == "%" || lastElement == "π" || lastElement == "!" || lastElement == ".")) {
+
                     this.currentOperand = this.currentOperand.toString() + ")";
                     firstBracketIterator--;
                 }
-                else{
+                else {
 
-                if ((firstBracketIterator > 0)) {
-                    this.currentOperand = this.currentOperand.toString() + ")";
-                    firstBracketIterator--;
-                    minifunctionFlag =0;
+                        // iterator that closes all the remaining opening brackets
+                    if ((firstBracketIterator > 0)) {
+                        this.currentOperand = this.currentOperand.toString() + ")";
+                        firstBracketIterator--;
+                        minifunctionFlag = 0;
 
 
+                    }
                 }
+
+
             }
 
-                console.log("end wale bracket nme ho aap");
-
-                // firstBracketIterator =0;
-                // if (firstBracketIterator == 0) indicator = 0;
-                currenNum = ""
-
-               
-            }
-            //}
             else {
-                // if(currenNum!="")workingarr.push(currenNum);
-              
+
+                // creates a opening bracket and set @indicator to 1
                 this.currentOperand = this.currentOperand.toString() + "("
                 indicator = 1;
-                currenNum = ""
                 firstBracketIterator = firstBracketIterator + 1;
-                console.log({ firstBracketIterator });
+                
                 calculator.updateDisplay();
             }
         }
 
         else {
-            // if (number == "." && this.currentOperand.includes(".")) return;
+
+            // if the input is not == "( )"
+
+            // checks if a number has a decimal pound , if not then adds it else does nothing
             if (number == "." && decimalFlag == 0) {
-                console.log("indside decimal land")
-                    this.currentOperand = this.currentOperand.toString() + "."
+              
+                this.currentOperand = this.currentOperand.toString() + "."
                 decimalFlag = 1;
             }
+           
             let currentOperandHolder1 = calculator.currentOperand;
 
+            // gets the last element from @currentOperandHolder1
             let a11 = currentOperandHolder1.charAt(currentOperandHolder1.length - 1);
 
+           
+           // checks last element and then only allows if the minus operation should be allowed or not
+
+           // for multiply  operation
             if (a11 == '×' && number == "-") {
                 if (subtractFlag == 0) {
                     this.currentOperand = calculator.currentOperand.toString() + "-";
-                    console.log("ypu in subtract land");
+                 
                     subtractFlag = 1
                     calculator.updateDisplay();
                 }
@@ -355,13 +275,14 @@ class Calculator {
             }
             else {
                 subtractFlag = 0;
-                console.log("ypu in HEAVEN land");
+         
             }
 
+            // for divide operation
             if (a11 == '÷' && number == "-") {
                 if (subtractFlag1 == 0) {
                     this.currentOperand = calculator.currentOperand.toString() + "-";
-                    console.log("ypu in subtract land 111");
+             
                     subtractFlag1 = 1
                     calculator.updateDisplay();
                 }
@@ -369,227 +290,95 @@ class Calculator {
             }
             else {
                 subtractFlag1 = 0;
-                console.log("ypu in HEAVEN land 222");
+           
             }
 
-            if (a11 == '%' && number == "-") {
-                if (subtractFlag2 == 0) {
-                    this.currentOperand = calculator.currentOperand.toString() + "-";
-                    console.log("ypu in subtract land 111");
-                    subtractFlag2 = 1
-                    calculator.updateDisplay();
-                }
-
-            }
-            else {
-                subtractFlag2 = 0;
-                console.log("ypu in HEAVEN land 222");
-            }
-
+       
+            // calls the function operationChecker if user input following opertions
             if (number == '+' || number == '×' || number == '÷' || number == '-') { operationChecker(); }
 
-            // if(number=="√")
-            // {
-            //     this.currentOperand = this.currentOperand.toString + "√";
-            // }
-           
-            if (number != "."   )
-            { 
-                console.log("hi number"+number);
+
+            // checks if a input is not a decimal , following if statement is used by most buttons of calculator
+            if (number != ".") {
                 this.currentOperand = this.currentOperand.toString() + number.toString();
-                
+
             }
-            
+
 
 
         }
 
 
-        console.log((number));
-
+  
+// helper function that decide what input should be appended , depending on operation
         function operationChecker() {
-            
+
             let currentOperandHolder = calculator.currentOperand;
+
+            // gets last element
             let a1 = currentOperandHolder.charAt(currentOperandHolder.length - 1);
-            let b1 = parseFloat(a1);
-            console.log({ b1 });
-            console.log({ a1 });
-            if (a1 == '+' || a1 == '%' || a1 == '×' || a1 == '÷' || a1 == '-') {
+        
+        
+            if (a1 == '+'  || a1 == '×' || a1 == '÷' || a1 == '-') {
+
+                // operationFlag for checking if number should be appended or not
                 if (operationFlag == 0) {
-                    console.log("you are here");
-                  let a =   this.currentOperand = this.currentOperand.toString() + a1
+             
+                    let a =  this.currentOperand.toString() + a1
                     operationFlag = 1
-                    
+
                 }
 
             }
             else {
-                console.log("must have pressed a number");
+                // reset operationFlag = 0 if user does not input following input
                 operationFlag = 0;
-                
+
             }
-          
+
         }
 
-        // console.log({convertToNum});
 
-        // if (number == '+' || number == '%' || number == '×' || number == '÷' || number == '-' || number == ')' ||
-        //  number == '('|| number == '^'|| number == 'π') {
-        //     decimalFlag = 0; return;
-        // }
-
-        if(isNaN(number) && number!="."){
+        // reset  decimal flag if the input is not a number and not a decimal
+        if (isNaN(number) && number != ".") {
             decimalFlag = 0; return;
         }
 
-         //check this stuff
-        //  if(number == "√"){
-        //     this.currentOperand = this.currentOperand + "√(";
-        //     calculator.updateDisplay();
+     
 
-        // }
-
-
-        // if (number == '( )') {
-        //     console.log("inside flag")
-
-        //     if (flag == 1) {
-        //         workingarr.push(")")
-        //         flag = 0;
-        //     }
-        //     else {
-        //         workingarr.push("(");
-        //         flag = 1;
-        //     }
-        // }
-            if (number == '.' && currenNum.includes('.')) {
-                console.log("why decimal")
-                return;
-            
-            currenNum += number;
-        }
-
-      
 
     }
-    chooseOperation(operation) {
-        this.operation = operation;
-        this.previousOperand = this.currentOperand;
-        this.currentOperand = "";
-    }
+ 
 
-    pushNumber(operation) {
-
-
-        workingarr.push(currenNum);
-        workingarr.push(operation);
-
-
-        if (operation == '-' && workingarr.length == 0) {
-            workingarr.push(operation);
-        }
-        currenNum = "";
-        console.log("we are working here" + workingarr);
-    }
-
+// computes object of our class calculator
     compute() {
 
-        let storeString = this.currentOperand.toString();
-        let operatedString = this.currentOperand.toString();
-
-        // for (let b = 0; b < storeString.length; b++) {
-        //     if (operatedString.includes('×'))
-        //         console.log("hi " + operatedString)
-
-        //     {
-        //         let indexOfMutiSign = operatedString.indexOf('×');
-        //         console.log("index:" + indexOfMutiSign)
-        //         if (indexOfMutiSign != -1) {
-        //             let arrayExample = [];
-        //             arrayExample = Array.from(operatedString);
-
-        //             let operandi1 = arrayExample[indexOfMutiSign - 1];
-        //             let operandi2 = arrayExample[indexOfMutiSign + 1];
-        //             console.log(operandi1 + "operan1");
-        //             console.log(operandi2 + "operan2");
-        //             let result1 = operandi1 * operandi2;
-        //             let tempIndex = indexOfMutiSign + 1;
-        //             operatedString = replaceAt(operatedString, tempIndex, result1);
-        //             console.log("tumharta " + operatedString)
-        //             console.log("this is result" + result1);
-        //             currentOperandTextElement1.value = operatedString.toString();
-        //         }
-        //     }
-
-
-        // }
-
-       
-
+      
         let output1 = computeAndOutput();
-        
+
         currentOperandTextElement1.value = output1.toString();
         this.currentOperand = output1.toString();
-        if(this.currentOperand.includes("."))decimalFlag =1;
+        if (this.currentOperand.includes(".")) decimalFlag = 1;
         errorWIndow.value = "";
         calculator.updateDisplay();
 
-
-     
-        // let tempArr = this.currentOperand.toString();
-        // for (let i = 0; i < tempArr.length; i++) {
-        //     if (tempArr[i] == '×') index.push(i + 1); {
-        //         // console.log('in')
-        //         for (let a = 0; a < index.length; a++) {
-        //             mul = index[a];
-
-        //             operand1 = (tempArr.charAt(mulIndex - 1));
-        //             operand2 = (tempArr.charAt(mulIndex + 1));
-        //             result = operand1 * operand2;
-        //             this.currentOperand.c
-        //             result = temp * result;
-        //             // console.log("multiplication" + result);
-        //         }
-        //         // index.forEach((xIndex) => {
-        //         //      mulIndex = xIndex ;
-        //         //      operand1 = tempArr.charAt(mulIndex - 1);
-        //         //      operand2 = tempArr.charAt(mulIndex + 1);
-        //         //     result = operand1 * operand2
-        //         //     console.log("multiplication" + result);
-
-        //         // })
-
-        //     }
-
-        //     if (tempArr.includes("+")) {
-        //         console.log('inAdd')
-        //         let mulIndex = tempArr.indexOf('+');
-        //         let operand1 = tempArr.charAt(mulIndex - 1);
-        //         let operand2 = tempArr.charAt(mulIndex + 1);
-        //         result = operand1 + operand2
-        //         console.log("addition" + result);
-        //     }
-        // }
-
-
-        // // console.log(tempArr + "sup");
-        // // let output =
-        // //     // console.log(output);
-        // //     outputScreen.value = output.toString();
     }
+
+    // used to display the output to text fields
     updateDisplay() {
-        // outputScreen.style.width = "3.5rem"/this.currentOperand.length ;
-        // outputScreen.style.maxWidth = "10ch";
+
 
         this.currentOperandTextElement.value = this.currentOperand;
-        //  a = outputScreen.getSelection();
-        let length = outputScreen.value.length;
+
+      
         outputScreen.focus();
-        // this.previousOperandTextElement.textContent = this.previousOperand;
+
     }
 }
 
 
+
+// creating constant object of html elements
 
 const outputScreen = document.getElementById("output-id");
 const numberButtons = document.querySelectorAll("[data-number]");
@@ -605,14 +394,17 @@ const miniFunction = document.querySelectorAll("[data-mini-function]");
 const sqrt = document.querySelector("[data-mini-sqrt]");
 
 
+// constant object of out class Calculator()
+const calculator = new Calculator( currentOperandTextElement1);
 
-const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement1);
 
-sqrt.addEventListener("click",()=>{
-    firstOperandFlag =1;
+// adding event listener to the  object of elements 
+
+sqrt.addEventListener("click", () => {
+    firstOperandFlag = 1;
     equalFlag = 0;
     calculator.appendNumber("√");
-    sqrtFlag =1;
+    sqrtFlag = 1;
     calculator.appendNumber("( )");
     calculator.updateDisplay();
     realtimeOperation();
@@ -620,84 +412,83 @@ sqrt.addEventListener("click",()=>{
 
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
-      
+
         calculator.appendNumber(button.innerText);
         calculator.updateDisplay();
-     
+
+        // for outputing value to secondary display @errorWindow
         realtimeOperation();
-        
+
     })
 })
 
 operationButton.forEach(b1 => {
     b1.addEventListener("click", () => {
-        // console.log(button.innerText)
-        equalFlag =0;
-        firstOperandFlag =1;
+
+        // sets the flag
+        equalFlag = 0;
+        firstOperandFlag = 1;
+
         calculator.appendNumber(b1.innerText);
         calculator.updateDisplay();
-        calculator.pushNumber(b1.innerText);
+       
     })
 })
 
 equalButton.addEventListener('click', () => {
-    equalFlag =1;
+    // sets the equalFlag
+    equalFlag = 1;
     calculator.compute();
-    
-    workingarr.push(currenNum);
-    console.log("you pressed equal " + workingarr);
-    // calculator.clear();
+
+
 });
 
 deleteButton.addEventListener('click', () => {
     calculator.delete();
     calculator.updateDisplay();
+     // for outputing value to secondary display @errorWindow
     realtimeOperation();
-//    lastinput = outputScreen.value.toString().charAt(outputScreen.value.length-1);
-//    console.log("length"+lastinput.vallength);
-//     console.log({lastinput});
-    if((outputScreen.length ==0) || (outputScreen.value =="")   ){ console.log({firstOperandFlag}); firstOperandFlag =0}
 
-    // if(isNaN(outputScreen.value))
-    // {
-    //     firstOperandFlag = 0;
-    // }
-    // else
-    // {
-    //     firstOperandFlag =1;
-    // }
+    //reset the @firstOperandFlag if textfield is empty
+    if ((outputScreen.length == 0) || (outputScreen.value == "")) { firstOperandFlag = 0 }
+
+
 })
 
+// clear and reset every flag and output text field
 allClearButton.addEventListener('click', () => {
-
-    
     calculator.clear();
     calculator.updateDisplay();
 })
 
-miniFunction.forEach((miniElement)=>{miniElement.addEventListener("click",()=>{
-        firstOperandFlag =1;
-        equalFlag =0;
+// event listener for our factorial , pi,sqrt ,power
+miniFunction.forEach((miniElement) => {
+    miniElement.addEventListener("click", () => {
+        firstOperandFlag = 1;
+        equalFlag = 0;
         calculator.appendNumber(miniElement.innerText);
         calculator.updateDisplay();
+
+         // for outputing value to secondary display @errorWindow
         realtimeOperation();
     })
 })
 
 
 
+// animation effect sets for our mobile devices
 
-numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "#D8D9DD"}));
-numberButtons.forEach((numberBut)=>numberBut.addEventListener("touchend",()=>{console.log("tu chal raha hai");numberBut.style.backgroundColor = "#f6f7fb"}));
+numberButtons.forEach((numberBut) => numberBut.addEventListener("touchstart", () => { numberBut.style.backgroundColor = "#D8D9DD" }));
+numberButtons.forEach((numberBut) => numberBut.addEventListener("touchend", () => {  numberBut.style.backgroundColor = "#f6f7fb" }));
 
-operationButton.forEach((operaBut)=>{operaBut.addEventListener("touchstart",()=>{console.log("tu chal raha hai");operaBut.style.backgroundColor = "#abcbe0"})});
-operationButton.forEach((operaBut)=>{operaBut.addEventListener("touchend",()=>{console.log("tu chal raha hai");operaBut.style.backgroundColor = "#c3e7fe"})});
+operationButton.forEach((operaBut) => { operaBut.addEventListener("touchstart", () => {  operaBut.style.backgroundColor = "#abcbe0" }) });
+operationButton.forEach((operaBut) => { operaBut.addEventListener("touchend", () => {  operaBut.style.backgroundColor = "#c3e7fe" }) });
 
-equalButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");equalButton.style.backgroundColor = "#b7c7de"});
-equalButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");equalButton.style.backgroundColor = "#d3E3FD"});
+equalButton.addEventListener("touchstart", () => {  equalButton.style.backgroundColor = "#b7c7de" });
+equalButton.addEventListener("touchend", () => {  equalButton.style.backgroundColor = "#d3E3FD" });
 
-allClearButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");allClearButton.style.backgroundColor = "#acd1b7"});
-allClearButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");allClearButton.style.backgroundColor = "#c3EED0"});
+allClearButton.addEventListener("touchstart", () => { allClearButton.style.backgroundColor = "#acd1b7" });
+allClearButton.addEventListener("touchend", () => { allClearButton.style.backgroundColor = "#c3EED0" });
 
-deleteButton.addEventListener("touchstart",()=>{console.log("tu chal raha hai");deleteButton.style.backgroundColor = "#D8D9DD"});
-deleteButton.addEventListener("touchend",()=>{console.log("tu chal raha hai");deleteButton.style.backgroundColor = "#f6f7fb"});
+deleteButton.addEventListener("touchstart", () => {  deleteButton.style.backgroundColor = "#D8D9DD" });
+deleteButton.addEventListener("touchend", () => {  deleteButton.style.backgroundColor = "#f6f7fb" });

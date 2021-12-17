@@ -144,13 +144,14 @@ align-self: center;
     height: 3rem;
     text-align: right;
     border: #000;
-    font-size: 1.9rem;
+    font-size: 2.5rem;
     font-family: googlefont;
     justify-self: flex-end;
     align-self: flex-end;
     background-color: inherit;
     outline: none;
     margin-right: 0.6rem;
+    margin-bottom: 0.5rem;
     color: inherit;
     transition: none;
 }
@@ -315,19 +316,16 @@ align-self: center;
     }
 
     .input-class{
-        width: inherit;
+        width: 95vw;
+        height: 39rem;
         border-radius: none;
     }
 
-    /* .input-button{
-        width: 5.3rem;
-        height: 5.1rem;
-        font-size: 2rem;
-    } */
+ 
 
     .algo-function-class , .AC-class, .input-button ,.equall-class{
-        width: 5.3rem;
-        height: 5.1rem;
+        width: 5rem;
+        height: 4.7rem;
         font-size: 1.7rem;
         transition: 0.2s ease-in;
     }
@@ -427,19 +425,15 @@ align-self: center;
     }
 
     .input-class{
-        width: inherit;
+        width: 95vw;
+        height: 39rem;
         border-radius: none;
     }
 
-     .input-button{
-        width: 5.3rem;
-        height: 5.1rem;
-        font-size: 2rem;
-    } 
-
+  
      .algo-function-class , .AC-class, .input-button ,.equall-class{
-        width: 5rem;
-        height: 4.1rem;
+        width: 4.7rem;
+        height: 4rem;
         font-size: 1.7rem;
         border-radius: 500px;
     }
