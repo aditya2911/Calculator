@@ -21,11 +21,14 @@ let firstBracketIterator = 0;
 let sqrtFlag = 0;
 let minifunctionFlag =0
 let equalFlag = 0
+let firstOperandFlag =0;
+let lastinput;
 
 function realtimeOperation() {
     let realtimeOutput = computeAndOutput();
     console.log("realtimeOutput"+realtimeOutput);
-    if(typeof(realtimeOutput)== "number")errorWIndow.textContent = realtimeOutput.toString();
+    // console.log({isNaN(realtimeOutput)});
+    if(typeof(realtimeOutput) == "number" && firstOperandFlag == 1)errorWIndow.value = realtimeOutput.toString();
 }
 
 
@@ -58,12 +61,12 @@ function  outputOperationColorChanger() {
    
     outputOperationContainer.style.color = "#FF5722";
     errorWIndow.style.color = "#FF5722";
-    errorWIndow.textContent = "Format error";
+    errorWIndow.value = "Format error";
  
 }
 
 function defaultOutputOperationColor(){
-    errorWIndow.textContent = "";
+    errorWIndow.value = "";
     outputOperationContainer.style.color = '#1e1e1f'
     errorWIndow.style.color = "#444646";
 }
@@ -200,6 +203,7 @@ class Calculator {
         firstBracketIterator = 0;
         minifunctionFlag =0;
         equalFlag = 0;
+        firstOperandFlag =0;
         defaultOutputOperationColor();
 
     }
@@ -209,10 +213,14 @@ class Calculator {
         if(this.currentOperand.charAt(this.currentOperand.length-1)=='('){firstBracketIterator--;}
         if(this.currentOperand.charAt(this.currentOperand.length-1)=='.'){decimalFlag =0}
         // if(this.currentOperand.charAt(this.currentOperand.length-1)=='(' && sqrtFlag==0){sqrtFlag =1}
+       
+       
+      
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
-
-
-
+      
+        
+     
+ 
         // (currenNum == "") ? "v" : workingarr.push(currenNum);
         // if (workingarr.at(-1) != '') {
         //     let indexElement = workingarr.at(-1);
@@ -243,7 +251,7 @@ class Calculator {
 
         defaultOutputOperationColor();
 
-        errorWIndow.textContent ="";
+        errorWIndow.value ="";
         console.log(number);
         // let cursor = cursorPosition1();
         // if(cursor<currentOperandTextElement1.length){
@@ -523,7 +531,7 @@ class Calculator {
         currentOperandTextElement1.value = output1.toString();
         this.currentOperand = output1.toString();
         if(this.currentOperand.includes("."))decimalFlag =1;
-        errorWIndow.textContent = "";
+        errorWIndow.value = "";
         calculator.updateDisplay();
 
 
@@ -601,6 +609,7 @@ const sqrt = document.querySelector("[data-mini-sqrt]");
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement1);
 
 sqrt.addEventListener("click",()=>{
+    firstOperandFlag =1;
     equalFlag = 0;
     calculator.appendNumber("√");
     sqrtFlag =1;
@@ -611,6 +620,7 @@ sqrt.addEventListener("click",()=>{
 
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
+      
         calculator.appendNumber(button.innerText);
         calculator.updateDisplay();
      
@@ -623,6 +633,7 @@ operationButton.forEach(b1 => {
     b1.addEventListener("click", () => {
         // console.log(button.innerText)
         equalFlag =0;
+        firstOperandFlag =1;
         calculator.appendNumber(b1.innerText);
         calculator.updateDisplay();
         calculator.pushNumber(b1.innerText);
@@ -641,6 +652,20 @@ equalButton.addEventListener('click', () => {
 deleteButton.addEventListener('click', () => {
     calculator.delete();
     calculator.updateDisplay();
+    realtimeOperation();
+//    lastinput = outputScreen.value.toString().charAt(outputScreen.value.length-1);
+//    console.log("length"+lastinput.vallength);
+//     console.log({lastinput});
+    if((outputScreen.length ==0) || (outputScreen.value =="")   ){ console.log({firstOperandFlag}); firstOperandFlag =0}
+
+    // if(isNaN(outputScreen.value))
+    // {
+    //     firstOperandFlag = 0;
+    // }
+    // else
+    // {
+    //     firstOperandFlag =1;
+    // }
 })
 
 allClearButton.addEventListener('click', () => {
@@ -650,6 +675,7 @@ allClearButton.addEventListener('click', () => {
 })
 
 miniFunction.forEach((miniElement)=>{miniElement.addEventListener("click",()=>{
+        firstOperandFlag =1;
         equalFlag =0;
         calculator.appendNumber(miniElement.innerText);
         calculator.updateDisplay();

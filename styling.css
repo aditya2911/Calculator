@@ -149,7 +149,7 @@ align-self: center;
     justify-self: flex-end;
     align-self: flex-end;
     background-color: inherit;
- 
+    outline: none;
     margin-right: 0.6rem;
     color: inherit;
     transition: none;
