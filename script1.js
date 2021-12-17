@@ -670,6 +670,7 @@ deleteButton.addEventListener('click', () => {
 
 allClearButton.addEventListener('click', () => {
 
+    
     calculator.clear();
     calculator.updateDisplay();
 })
