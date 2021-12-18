@@ -97,20 +97,10 @@
     border: 0.425rem solid black;
     border-radius: 1.875rem;
     background-color: var(--Background-container-color);
-    box-shadow: -29px 25px 10px 0px #cdcfba;
+    box-shadow: -1.8125rem 1.5625rem 0.625rem 0px #cdcfba;
 }
 
-.previous-input{
-    max-width: 19rem;
-width: 2ch;
-height: auto;
-background-color: #dfe5db;
-border: #000;
-font-size: 3.5rem;
-font-family: googlefont;
-justify-self: flex-end;
-align-self: center;
-}
+
 .output-operation-class{
     width: 19.5rem;
     border-radius: 1.4rem 1.4rem 1.2rem 1.2rem;
@@ -190,8 +180,7 @@ align-self: center;
     text-align: center;
     font-family: googlefont;
     font-size: 1.7rem;
-    /* unicode-bidi: embed; */
-    /* box-shadow: 0 0 3px #c8c8c89e; */
+ 
 }
 
 .input-button:active{
@@ -217,7 +206,7 @@ align-self: center;
     border: #000;
     text-align: center;
     font-family: googlefont;
-    /* box-shadow: 0 0 3px #b4b4b4; */
+   
 }
 .AC-class:active{
     border-radius: 20%;
@@ -235,7 +224,7 @@ align-self: center;
     border: #000;
     text-align: center;
     font-family: googlefont;
-    /* box-shadow: 0 0 3px #b4b4b4; */
+   
 }
 
 
@@ -272,7 +261,7 @@ align-self: center;
 
 
 
-@media screen and (max-width:430px) {
+@media screen and (max-width:430px) and (orientation:portrait) {
 
     :root{
         font-size: 17.8px;
@@ -280,7 +269,8 @@ align-self: center;
 
     .input-button:active ,.algo-function-class:active ,.equall-class:active ,.AC-class:active{
         border-radius: 20%;
-        transition: 0.08s cubic-bezier(0, 0.01, 1, 1);
+        transition: 0.2s cubic-bezier(0.01, 0.95, 1, 1);
+
     
     }
     
@@ -290,6 +280,7 @@ align-self: center;
         background-color: none;
         width: 100vw;
         height: 100vh;
+        border-radius: 0;
     }
 
 
@@ -297,8 +288,9 @@ align-self: center;
         width: 100vw;
         margin: 0.8rem 0 0 0;
         font-weight: 600; 
+  
         align-items: center;
-        font-family: 'OpenSansRegular';
+  
         
         
     }
@@ -308,16 +300,19 @@ align-self: center;
         width: 5rem;
         font-weight: 600;
         height: 2.5rem;
+        color:#1f1e1f;
         font-family: 'OpenSansRegular';
     }
     .output-operation-class{
         width: inherit;
-        border-radius: 0rem 0rem 1.2rem 1.2rem;
+       
+        border-radius: 0rem 0rem 1.7rem 1.7rem;
     }
 
     .input-class{
         width: 95vw;
-        height: 39rem;
+        height: 38rem;
+        margin-bottom: 0.5rem;
         border-radius: none;
     }
 
@@ -325,8 +320,10 @@ align-self: center;
 
     .algo-function-class , .AC-class, .input-button ,.equall-class{
         width: 5rem;
-        height: 4.7rem;
-        font-size: 1.7rem;
+        height: 5.13rem;
+        font-size: 1.75rem;
+        font-weight: 100;
+        color:#323233;
         transition: 0.2s ease-in;
     }
 
@@ -337,6 +334,9 @@ align-self: center;
         font-size: 4rem;
         justify-self: flex-end;
         margin-right: 1.8rem;
+       
+        font-family: 'googlefont';
+        letter-spacing: 0.4rem;
     }
 
     .error-window{
@@ -344,6 +344,7 @@ align-self: center;
         font-size: 2.3rem;
         margin-right: 1.8rem;
         margin-bottom: 0.5rem;
+     
     }
 
     .input-button img{
@@ -355,42 +356,38 @@ align-self: center;
 
 
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:400px) and (orientation:portrait) {
     :root{
         font-size: 17px;
     }
-    /* .algo-function-class , .AC-class, .input-button ,.equall-class{
-        width: 5.3rem;
-        height: 5.1rem;
-        font-size: 2rem;
-    } */
+
 }
 
-@media screen and (max-width:380px) {
+@media screen and (max-width:380px) and (orientation:portrait) {
     :root{
         font-size: 16px;
     }
 }
 
-@media screen and (max-width:360px) {
+@media screen and (max-width:360px) and (orientation:portrait) {
     :root{
         font-size: 15.2px;
     }
 }
 
 
-@media screen and (max-width:340px) {
+@media screen and (max-width:340px) and (orientation:portrait) {
     :root{
         font-size: 14.5px;
     }
 }
 
-@media screen and (max-width:320px) {
+@media screen and (max-width:320px) and (orientation:portrait) {
     :root{
         font-size: 13.6px;
     }
 }
-@media screen  and (max-height:640px)  {
+@media screen  and (max-height:640px) and (orientation:portrait) {
 
     :root{
         font-size: 17px;
@@ -398,7 +395,10 @@ align-self: center;
 
     .input-button:active ,.algo-function-class:active ,.equall-class:active ,.AC-class:active{
         border-radius: 20%;
-        transition: 0.08s cubic-bezier(0, 0.01, 1, 1);
+        /* transition:0.2s cubic-bezier(0, 1.25, 1, 1) */
+        transition: 0.2s cubic-bezier(0.01, 0.95, 1, 1);
+     
+       
     
     }
     
@@ -418,23 +418,27 @@ align-self: center;
 
     .mini-function-styling{
         font-size: 1.5rem;
+        font-family: 'googlefont';
+        font-weight: 500;
     }
     .output-operation-class{
         width: inherit;
-        border-radius: 0rem 0rem 1.2rem 1.2rem;
+        border-radius: 0rem 0rem 1.4rem 1.4rem;
     }
 
     .input-class{
         width: 95vw;
-        height: 39rem;
+        height: 35.5rem;
         border-radius: none;
     }
 
   
      .algo-function-class , .AC-class, .input-button ,.equall-class{
-        width: 4.7rem;
-        height: 4rem;
-        font-size: 1.7rem;
+        width: 5.2rem;
+        height: 4.3rem;
+        font-size: 1.55rem;
+        font-weight: 100;
+        color: #1f1e1f;
         border-radius: 500px;
     }
 

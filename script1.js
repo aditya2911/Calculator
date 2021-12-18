@@ -54,7 +54,7 @@ function ifTextElementEmptyAndOperand() {
 // function that changes color of font on format error
 function outputOperationColorChanger() {
 
-    outputOperationContainer.style.color = "#FF5722";
+    outputScreen.style.color = "#FF5722";
     errorWIndow.style.color = "#FF5722";
     errorWIndow.value = "Format error";
 
@@ -65,7 +65,7 @@ function outputOperationColorChanger() {
 // function that changes color of font to default color when user All clear , inputs or delete some inputs
 function defaultOutputOperationColor() {
     errorWIndow.value = "";
-    outputOperationContainer.style.color = '#1e1e1f'
+    outputScreen.style.color = '#1e1e1f'
     errorWIndow.style.color = "#444646";
 }
 
