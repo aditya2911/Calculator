@@ -120,6 +120,7 @@
     font-family: googlefont;
     align-self: flex-end;
     padding: 0;
+    letter-spacing: 0.1rem;
     justify-self: center;
     background-color: inherit;
     margin-right: 0.6rem;
@@ -320,7 +321,7 @@
 
     .algo-function-class , .AC-class, .input-button ,.equall-class{
         width: 5rem;
-        height: 5.13rem;
+        height: 5.1rem;
         font-size: 1.75rem;
         font-weight: 100;
         color:#323233;
@@ -334,9 +335,9 @@
         font-size: 4rem;
         justify-self: flex-end;
         margin-right: 1.8rem;
-       
+        height:fit-content;
         font-family: 'googlefont';
-        letter-spacing: 0.4rem;
+        letter-spacing: 0.3rem;
     }
 
     .error-window{
