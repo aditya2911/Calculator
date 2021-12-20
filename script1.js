@@ -156,8 +156,8 @@ class Calculator {
     delete() {
 
         //reset flag when a respective input is deleted
-        if (this.currentOperand.charAt(this.currentOperand.length - 1) == ')') {  firstBracketIterator++; }
-        if (this.currentOperand.charAt(this.currentOperand.length - 1) == '(') { firstBracketIterator--; }
+        if (this.currentOperand.charAt(this.currentOperand.length - 1) == ')') {  firstBracketIterator++; indicator =1;}
+        if (this.currentOperand.charAt(this.currentOperand.length - 1) == '(') { firstBracketIterator--;}
         if (this.currentOperand.charAt(this.currentOperand.length - 1) == '.') { decimalFlag = 0 }
 
        // removing last input
@@ -209,7 +209,7 @@ class Calculator {
             if ((indicator == 1) && (!isNaN(lastElement) || lastElement == ")" || lastElement == "%" ||
              lastElement == "π" || lastElement == "!" || lastElement == ".")) {
              
-
+                    console.log("end bracket 11");
 
                 // iterator that closes all the remaining opening brackets for the following operations
                 if ((firstBracketIterator > 0) && (lastElement == ")" ||
@@ -217,23 +217,35 @@ class Calculator {
 
                     this.currentOperand = this.currentOperand.toString() + ")";
                     firstBracketIterator--;
+                    if(firstBracketIterator ==0){ indicator =0;}
+                    console.log("end bracket 22");
                 }
                 else {
+
 
                         // iterator that closes all the remaining opening brackets
                     if ((firstBracketIterator > 0)) {
                         this.currentOperand = this.currentOperand.toString() + ")";
                         firstBracketIterator--;
                         minifunctionFlag = 0;
-
+                        
+                        
+                        console.log("end bracket 333 iterator")
+                        console.log(firstBracketIterator);
+                        if(firstBracketIterator == 0) {indicator = 0;}
 
                     }
+                
+             
+                 
                 }
-
-
+             
+               
             }
+            
 
             else {
+
 
                 // creates a opening bracket and set @indicator to 1
                 this.currentOperand = this.currentOperand.toString() + "("
@@ -241,6 +253,7 @@ class Calculator {
                 firstBracketIterator = firstBracketIterator + 1;
                 
                 calculator.updateDisplay();
+                console.log("opening bracket");
             }
         }
 
@@ -399,6 +412,8 @@ const calculator = new Calculator( currentOperandTextElement1);
 
 
 // adding event listener to the  object of elements 
+
+
 
 sqrt.addEventListener("click", () => {
     firstOperandFlag = 1;
