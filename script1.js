@@ -204,7 +204,7 @@ class Calculator {
             sqrtFlag = 0;
             decimalFlag = 0;
 
-
+            if(firstBracketIterator ==0){ indicator =0; ;}
             // deciding based on indicator flag what should be done, also check last element is a number
             if ((indicator == 1) && (!isNaN(lastElement) || lastElement == ")" || lastElement == "%" ||
              lastElement == "π" || lastElement == "!" || lastElement == ".")) {
@@ -217,7 +217,7 @@ class Calculator {
 
                     this.currentOperand = this.currentOperand.toString() + ")";
                     firstBracketIterator--;
-                    if(firstBracketIterator ==0){ indicator =0;}
+                    if(firstBracketIterator ==0){ indicator =0; ;}
                     console.log("end bracket 22");
                 }
                 else {
@@ -232,7 +232,7 @@ class Calculator {
                         
                         console.log("end bracket 333 iterator")
                         console.log(firstBracketIterator);
-                        if(firstBracketIterator == 0) {indicator = 0;}
+                        if(firstBracketIterator == 0) {indicator = 0; }
 
                     }
                 
