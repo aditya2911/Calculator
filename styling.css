@@ -37,6 +37,7 @@
 }
 *{
     transition:var(--transition-time);
+    outline: none;
 }
     
 
@@ -341,7 +342,8 @@
     }
 
     .error-window{
-        max-width: 96vw;
+        max-width: none;
+        width: 86vw;
         font-size: 2.3rem;
         margin-right: 1.8rem;
         margin-bottom: 0.5rem;
@@ -440,6 +442,7 @@
         font-size: 1.55rem;
         font-weight: 100;
         color: #1f1e1f;
+        transition: 0.5s ease-in;
         border-radius: 500px;
     }
 
@@ -453,7 +456,8 @@
     }
 
     .error-window{
-        max-width: 96vw;
+        width: 86vw;
+        max-width: none;
         font-size: 2.3rem;
         margin-right: 1.3rem;
         margin-bottom: 0.8rem;

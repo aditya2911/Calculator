@@ -439,7 +439,7 @@ equalButton.addEventListener('click', () => {
     // sets the equalFlag
     equalFlag = 1;
     calculator.compute();
-
+outputScreen.blur();
 
 });
 
